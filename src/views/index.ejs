@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Azur Lane API</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet"> 
+    <style>
+        * {
+            font-family: "Ubuntu", sans-serif;
+        }
+
+        code {
+            background-color: #f5f5f5;
+            color: #ff3860;
+            font-size: .875em;
+            font-weight: 400;
+            padding: .25em .5em .25em;
+        }
+    </style>
+</head>
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <div class="container">
+        <ul class="collection with-header">
+            <li class="collection-header"><h4>V1 Endpoints</h4></li>
+            <li class="collection-item"><div><b>/v1/ship</b> - Get info about a ship (requires a <code>name</code> param)<a href="/v1/ship" class="secondary-content"><i class="material-icons">send</i></a></div></li>
+            <li class="collection-item"><div><b>/v1/test</b> - Just some test route<a href="/v1/test" class="secondary-content"><i class="material-icons">send</i></a></div></li>
+        </ul>
+    </div>
+</body>
+</html>
