@@ -14,7 +14,7 @@ async function main() {
     app.disable("x-powered-by");
 
     app.set("views", path.join(__dirname, "views"));
-    app.set("view engine", 'ejs');
+    app.set("view engine", "ejs");
     app.set("json spaces", 4);
     app.set("env", settings.env);
 
