@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Response, Request } from "express";
 import path from "path";
 import { promises as fs } from "fs";
 import { Settings } from "../../utils/Interfaces";
@@ -14,6 +14,10 @@ export default class APIv1 {
         this.routes = new Map();
         this.path = "/v1";
         this.settings = settings;
+
+        this.router.get("/", (_req, res) => {
+            res.render("index");
+        });
     }
 
     public async loadRoutes(): Promise<void> {

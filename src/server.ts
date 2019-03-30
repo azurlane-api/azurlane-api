@@ -22,7 +22,7 @@ async function main() {
     app.use(api.path, api.router);
 
     app.get("/", (_req, res) => {
-        res.render("index")
+        res.redirect("/v1");
     });
 
     app.listen(port, (error: Error) => {
