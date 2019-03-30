@@ -6,13 +6,19 @@ const app = express();
 const port = settings.env === "production" ? settings.port : 8080;
 const api = new APIv1(settings);
 
-app.set("env", settings.env);
-app.disable("x-powered-by");
+async function main() {
+    await api.loadRoutes();
 
-app.use(express.json());
-app.use(api.path, api.router);
+    app.set("env", settings.env);
+    app.disable("x-powered-by");
 
-app.listen(port, (error: Error) => {
-    if (error) return console.error(error);
-    console.info(`Starting http server on port ${port}`);
-});
+    app.use(express.json());
+    app.use(api.path, api.router);
+
+    app.listen(port, (error: Error) => {
+        if (error) return console.error(error);
+        console.info(`Starting http server on port ${port}`);
+    });
+}
+
+main().catch(console.error);
