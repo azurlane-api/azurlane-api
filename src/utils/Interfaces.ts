@@ -4,6 +4,7 @@ export interface Settings {
     version: string;
     port: number;
     env: string;
+    baseUrl: string;
 }
 
 export interface Controller {
