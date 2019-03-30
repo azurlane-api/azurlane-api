@@ -1,7 +1,7 @@
 # al-api
 Api that returns azur lane data
 
-api url: https://idk-yet.com/v1
+api url: https://azurlane-api.herokuapp.com/v1
 
 | Routes | Param  |
 |:------:|:------:|
@@ -9,6 +9,6 @@ api url: https://idk-yet.com/v1
 |        |        |
 
 ### Examples
-- https://idk-yet.com/v1/ship?name=prinz%20eugen
-- https://idk-yet.com/v1/ship?name=prinz_eugen
-- https://idk-yet.com/v1/ship?name=Prinz_Eugen
+- https://azurlane-api.herokuapp.com/v1/ship?name=prinz%20eugen
+- https://azurlane-api.herokuapp.com/v1/ship?name=prinz_eugen
+- https://azurlane-api.herokuapp.com/v1/ship?name=Prinz_Eugen
