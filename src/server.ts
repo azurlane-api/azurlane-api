@@ -4,7 +4,7 @@ import settings from "../settings";
 import APIv1 from "./api/v1/Router";
 
 const app = express();
-const port = settings.env === "production" ? settings.port : 8080;
+const port = settings.env === "production" ? process.env.PORT : 8080;
 const api = new APIv1(settings);
 
 async function main() {
