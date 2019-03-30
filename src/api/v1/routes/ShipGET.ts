@@ -48,14 +48,16 @@ export default class ShipGET {
             const shipname = $(".mw-parser-output span")[0].children[0].data;
             const names = { full: "", en: "", cn: "", jp: "" };
 
-            const list = $("#tabber-65a9e89be3346823405cb28f78263f1d .tabbertab");
+            const list = $("div[id^=\"tabber-\"] .tabbertab");
             const skins = [];
             for (let i = 0; i < list.length; i++) {
                 const child = list[i].children.find((c) => c.attribs ? c.attribs.class ? c.attribs.class.indexOf("adaptiveratioimg") !== -1 : false : false);
-                skins.push({
-                    title: list[i].attribs.title,
-                    image: child ? this.settings.baseUrl + child.children[0].children[0].attribs.src : null
-                });
+                if (child) {
+                    skins.push({
+                        title: list[i].attribs.title,
+                        image: this.settings.baseUrl + child.children[0].children[0].attribs.src
+                    });
+                }
             }
 
             if (shipname) {
