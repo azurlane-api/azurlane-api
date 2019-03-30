@@ -20,7 +20,7 @@ export default class APIv1 {
         const files = await fs.readdir(path.join(__dirname, "/routes/"));
 
         for (const file of files) {
-            if (file.endsWith("ts")) {
+            if (file.endsWith(".ts") || file.endsWith(".js")) {
                 const temp = await import(path.join(__dirname, "/routes/", file));
                 const route = new temp.default(this, this.settings);
                 
