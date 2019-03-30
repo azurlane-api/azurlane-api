@@ -91,12 +91,12 @@ export default class ShipGET {
                 statusCode: 200,
                 statusMessage: "OK",
                 message: "The request was successful",
-                data: {
+                ship: {
                     id: shipID ? shipID.trim() : null,
                     names: names,
                     images: {
                         thumbnail: image,
-                        full: `${this.settings.baseUrl}/w/images/6/67/${name}.png`
+                        large: `${this.settings.baseUrl}/w/images/6/67/${name}.png`
                     },
                     buildTime: buildTime ? buildTime.trim() : null,
                     rarity: rarity,
