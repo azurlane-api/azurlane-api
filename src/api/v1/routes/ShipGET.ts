@@ -48,6 +48,16 @@ export default class ShipGET {
             const shipname = $(".mw-parser-output span")[0].children[0].data;
             const names = { full: "", en: "", cn: "", jp: "" };
 
+            const list = $("#tabber-65a9e89be3346823405cb28f78263f1d .tabbertab");
+            const skins = [];
+            for (let i = 0; i < list.length; i++) {
+                const child = list[i].children.find((c) => c.attribs ? c.attribs.class ? c.attribs.class.indexOf("adaptiveratioimg") !== -1 : false : false);
+                skins.push({
+                    title: list[i].attribs.title,
+                    image: child ? this.settings.baseUrl + child.children[0].children[0].attribs.src : null
+                });
+            }
+
             if (shipname) {
                 names.full = shipname;
                 names.en = shipname.replace(/ \([a-z]{2}: \D+; [a-z]{2}: \D+\)/gui, "");
@@ -94,10 +104,8 @@ export default class ShipGET {
                 ship: {
                     id: shipID ? shipID.trim() : null,
                     names: names,
-                    images: {
-                        thumbnail: image,
-                        large: `${this.settings.baseUrl}/w/images/6/67/${name}.png`
-                    },
+                    thumbnail: image,
+                    skins: skins,
                     buildTime: buildTime ? buildTime.trim() : null,
                     rarity: rarity,
                     stars: {
