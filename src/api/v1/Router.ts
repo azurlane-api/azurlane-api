@@ -1,4 +1,4 @@
-import express, { Response, Request } from "express";
+import express from "express";
 import path from "path";
 import { promises as fs } from "fs";
 import { Settings } from "../../utils/Interfaces";
@@ -26,7 +26,7 @@ export default class APIv1 {
         for (const file of files) {
             if (file.endsWith(".ts") || file.endsWith(".js")) {
                 const temp = await import(path.join(__dirname, "/routes/", file));
-                const route = new temp.default(this, this.settings);
+                const route = new temp.default({ router: this.router, settings: this.settings });
                 
                 console.info(`Connected route: ${this.path}${route.path}`);
                 this.routes.set(route.path, route);

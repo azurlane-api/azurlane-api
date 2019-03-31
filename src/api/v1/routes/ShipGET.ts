@@ -23,7 +23,7 @@ export default class ShipGET {
             return res.status(400).json({
                 statusCode: 400,
                 statusMessage: "Bad Request",
-                message: "The request cannot be fulfilled due to it missing a name query param."
+                message: "Missing a name query param."
             });
         }
 
@@ -37,7 +37,7 @@ export default class ShipGET {
             return res.status(400).json({
                 statusCode: 400,
                 statusMessage: "Bad Request",
-                message: "The request cannot be fulfilled due to bad syntax."
+                message: "Invalid ship name."
             });
         }
 

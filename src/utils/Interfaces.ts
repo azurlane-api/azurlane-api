@@ -10,3 +10,8 @@ export interface Controller {
     router: Router;
     settings: Settings;
 }
+
+export interface ConstructionData {
+    time: string;
+    ships: string[];
+}
