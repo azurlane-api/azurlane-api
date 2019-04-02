@@ -62,14 +62,14 @@ export default class ShipGET {
 
             if (shipname) {
                 names.full = shipname;
-                names.en = shipname.replace(/ \([a-z]{2}: \D+; [a-z]{2}: \D+\)/gui, "");
+                names.en = shipname.replace(/ \([a-z]{2}: .+; [a-z]{2}: .+\)/gui, "");
 
-                const tempCN = shipname.match(/\(cn: \D+;/gui) || []
+                const tempCN = shipname.match(/\(cn: .+;/gui) || []
                 if (tempCN.length >= 1) {
                     names.cn = tempCN[0].replace(/^\(cn: /gui, "").replace(/;$/gui, "");
                 }
 
-                const tempJP = shipname.match(/jp: \D+\)/gui) || []
+                const tempJP = shipname.match(/jp: .+\)/gui) || []
                 if (tempJP.length >= 1) {
                     names.jp = tempJP[0].replace(/^jp: /gui, "").replace(/\)$/gui, "");
                 }
