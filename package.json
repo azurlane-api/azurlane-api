@@ -1,6 +1,6 @@
 {
     "name": "al-api",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "Api that returns azur lane data",
     "main": "src/server.ts",
     "engines": {
@@ -49,6 +49,7 @@
         "@types/axios": "^0.14.0",
         "@types/cheerio": "^0.22.11",
         "@types/express": "^4.16.1",
+        "@types/express-rate-limit": "^3.3.0",
         "@types/node": "^11.12.2",
         "@types/shelljs": "^0.8.3",
         "gts": "^0.9.0",

@@ -15,3 +15,15 @@ export interface ConstructionData {
     time: string;
     ships: string[];
 }
+
+export interface Names {
+    full: string | null;
+    en: string | null;
+    cn: string | null;
+    jp: string | null;
+}
+
+export interface Skins {
+    title: string | null;
+    image: string | null;
+}

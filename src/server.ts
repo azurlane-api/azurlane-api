@@ -1,4 +1,5 @@
 import express from "express";
+import RateLimit from "express-rate-limit";
 import path from "path";
 import settings from "../settings";
 import APIv1 from "./api/v1/Router";
@@ -6,6 +7,16 @@ import APIv1 from "./api/v1/Router";
 const server = express();
 const port = settings.env === "production" ? process.env.PORT : 8080;
 const api = new APIv1(settings);
+
+const limiter = new RateLimit({
+    windowMs: 5 * 1000,
+    max: 10,
+    handler: (_req, res) => res.status(429).json({
+        statusCode: 429,
+        statusMessage: "Too Many Requests",
+        message: "owo you hit the ratelimit, please calm down b-baka!"
+    })
+});
 
 async function main() {
     await api.loadRoutes();
@@ -18,6 +29,7 @@ async function main() {
     server.set("json spaces", 4);
     server.set("env", settings.env);
 
+    server.use(limiter);
     server.use(express.json());
     server.use(api.path, api.router);
 

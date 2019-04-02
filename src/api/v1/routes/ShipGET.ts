@@ -1,7 +1,7 @@
 import cheerio from "cheerio";
 import axios, { AxiosResponse } from "axios";
 import { Router, Request, Response } from "express";
-import { Controller, Settings } from "../../../utils/Interfaces";
+import { Controller, Settings, Names, Skins } from "../../../utils/Interfaces";
 import { capitalize } from "../../../utils/Helpers";
 
 export default class ShipGET {
@@ -46,10 +46,10 @@ export default class ShipGET {
             const image = this.settings.baseUrl + $(".image img")[0].attribs.src;
             const shipdata = $("tbody tr td");
             const shipname = $(".mw-parser-output span")[0].children[0].data;
-            const names = { full: "", en: "", cn: "", jp: "" };
+            const names: Names = { full: null, en: null, cn: null, jp: null };
 
             const list = $("div[id^=\"tabber-\"] .tabbertab");
-            const skins = [];
+            const skins: Skins[] = [];
             for (let i = 0; i < list.length; i++) {
                 const child = list[i].children.find((c) => c.attribs ? c.attribs.class ? c.attribs.class.indexOf("adaptiveratioimg") !== -1 : false : false);
                 if (child) {
@@ -86,7 +86,7 @@ export default class ShipGET {
             const hullType = shipdata[5].children[3].children[0].data; // .next.next.next
 
             // Check which rarity it is and use the appropriate string
-            let rarity = "";
+            let rarity: string | null = null;
             const str = $("tbody tr td")[1].children[0].attribs.src.toLowerCase();
             if (str.indexOf("normal") !== -1)
                 rarity = "Common";
@@ -114,9 +114,9 @@ export default class ShipGET {
                         value: stars ? stars.trim() : null,
                         count: stars ? (stars.match(/★/gui) || []).length : 0
                     },
-                    class: shipClass,
-                    nationality: nationality,
-                    hullType: hullType
+                    class: shipClass ? shipClass : null,
+                    nationality: nationality ? nationality : null,
+                    hullType: hullType ? hullType : null
                 }
             });
         } catch (error) {
