@@ -1,9 +1,15 @@
 import { Router } from "express";
+import Logger from "./Logger";
 
 export interface Settings {
     version: string;
     env: string;
     baseUrl: string;
+}
+
+export interface APIOptions {
+    settings: Settings,
+    logger: Logger
 }
 
 export interface Controller {

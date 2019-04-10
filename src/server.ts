@@ -2,11 +2,13 @@ import express from "express";
 import RateLimit from "express-rate-limit";
 import path from "path";
 import settings from "../settings";
+import Logger from "./utils/Logger";
 import APIv1 from "./api/v1/Router";
 
 const server = express();
 const port = settings.env === "production" ? process.env.PORT : 8080;
-const api = new APIv1(settings);
+const logger = new Logger();
+const api = new APIv1({ settings, logger });
 
 const limiter = new RateLimit({
     windowMs: 5 * 1000,
@@ -38,9 +40,9 @@ async function main() {
     });
 
     server.listen(port, (error: Error) => {
-        if (error) return console.error(error);
-        console.info(`Starting http server on port ${port}`);
+        if (error) return logger.error("LISTEN", error.toString());
+        logger.ready(`Starting http server on port ${port}`);
     });
 }
 
-main().catch(console.error);
+main().catch((e) => logger.error("MAIN", e.toString()));
