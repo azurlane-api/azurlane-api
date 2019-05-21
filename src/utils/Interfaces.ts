@@ -28,6 +28,7 @@ export interface Names {
     en: string | null;
     cn: string | null;
     jp: string | null;
+    kr: string | null;
 }
 
 export interface Skin {

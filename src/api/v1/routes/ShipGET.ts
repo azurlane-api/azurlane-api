@@ -47,7 +47,7 @@ export default class ShipGET {
             const image = this.settings.baseUrl + $(".image img")[0].attribs.src;
             const shipdata = $("tbody tr td");
             const shipname = $(".mw-parser-output span")[0].children[0].data;
-            const names: Names = { full: null, en: null, cn: null, jp: null };
+            const names: Names = { full: null, en: null, cn: null, jp: null, kr: null };
 
             const list = $("div[id^=\"tabber-\"] .tabbertab");
             const skins: Skin[] = [];
@@ -63,7 +63,7 @@ export default class ShipGET {
 
             if (shipname) {
                 names.full = shipname.trim();
-                names.en = shipname.replace(/ \([a-z]{2}: .+; [a-z]{2}: .+\)/gui, "").trim();
+                names.en = shipname.replace(/ \([a-z]{2}: .+; [a-z]{2}: .+; [a-z]{2}: .+\)/gui, "").trim();
 
                 for (let i = 0; i < nations.length; i++) {
                     if (names.en.indexOf(nations[i]) !== -1) {
@@ -71,14 +71,19 @@ export default class ShipGET {
                     }
                 }
 
-                const tempCN = shipname.match(/\(cn: .+;/gui) || [];
-                if (tempCN.length >= 1) {
-                    names.cn = tempCN[0].replace(/^\(cn: /gui, "").replace(/;$/gui, "");
+                const cn = shipname.match(/\(cn: .+; j/gui) || [];
+                if (cn.length >= 1) {
+                    names.cn = cn[0].replace(/^\(cn: /gui, "").replace(/; j$/gui, "");
                 }
 
-                const tempJP = shipname.match(/jp: .+\)/gui) || [];
-                if (tempJP.length >= 1) {
-                    names.jp = tempJP[0].replace(/^jp: /gui, "").replace(/\)$/gui, "");
+                const jp = shipname.match(/jp: .+;/gui) || [];
+                if (jp.length >= 1) {
+                    names.jp = jp[0].replace(/^jp: /gui, "").replace(/;$/gui, "");
+                }
+
+                const kr = shipname.match(/kr: .+\)/gui) || [];
+                if (kr.length >= 1) {
+                    names.kr = kr[0].replace(/^kr: /gui, "").replace(/\)$/gui, "");
                 }
             }
 
