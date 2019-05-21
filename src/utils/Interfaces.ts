@@ -5,6 +5,7 @@ export interface Settings {
     version: string;
     env: string;
     baseUrl: string;
+    userAgent: string;
 }
 
 export interface APIOptions {
@@ -29,7 +30,7 @@ export interface Names {
     jp: string | null;
 }
 
-export interface Skins {
+export interface Skin {
     title: string | null;
     image: string | null;
 }

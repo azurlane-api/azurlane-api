@@ -20,7 +20,7 @@ const limiter = new RateLimit({
     })
 });
 
-async function main() {
+async function main(): Promise<void> {
     await api.loadRoutes();
 
     server.enable("trust proxy");

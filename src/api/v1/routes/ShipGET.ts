@@ -1,8 +1,8 @@
 import cheerio from "cheerio";
-import axios, { AxiosResponse } from "axios";
+import axios, { AxiosResponse, AxiosRequestConfig } from "axios";
 import { Router, Request, Response } from "express";
-import { Controller, Settings, Names, Skins } from "../../../utils/Interfaces";
-import { capitalize } from "../../../utils/Helpers";
+import { Controller, Settings, Names, Skin } from "../../../utils/Interfaces";
+import { nations } from "../../../utils/Helpers";
 
 export default class ShipGET {
     public path: string;
@@ -28,11 +28,12 @@ export default class ShipGET {
         }
 
         name = name.replace(/ /gui, "_");
-        name = name.split("_").map((str: string) => capitalize(str)).join("_");
 
+        // eslint-disable-next-line init-declarations
         let response: AxiosResponse;
         try {
-            response = await axios.get(`${this.settings.baseUrl}/${name}`);
+            const reqConfig: AxiosRequestConfig = { headers: { "User-Agent": this.settings.userAgent } }
+            response = await axios.get(`${this.settings.baseUrl}/${name}`, reqConfig);
         } catch (e) {
             return res.status(400).json({
                 statusCode: 400,
@@ -49,9 +50,9 @@ export default class ShipGET {
             const names: Names = { full: null, en: null, cn: null, jp: null };
 
             const list = $("div[id^=\"tabber-\"] .tabbertab");
-            const skins: Skins[] = [];
+            const skins: Skin[] = [];
             for (let i = 0; i < list.length; i++) {
-                const child = list[i].children.find((c) => c.attribs ? c.attribs.class ? c.attribs.class.indexOf("adaptiveratioimg") !== -1 : false : false);
+                const child = list[i].children.find((c): boolean => c.attribs ? c.attribs.class ? c.attribs.class.indexOf("adaptiveratioimg") !== -1 : false : false);
                 if (child) {
                     skins.push({
                         title: list[i].attribs.title,
@@ -61,43 +62,71 @@ export default class ShipGET {
             }
 
             if (shipname) {
-                names.full = shipname;
-                names.en = shipname.replace(/ \([a-z]{2}: .+; [a-z]{2}: .+\)/gui, "");
+                names.full = shipname.trim();
+                names.en = shipname.replace(/ \([a-z]{2}: .+; [a-z]{2}: .+\)/gui, "").trim();
 
-                const tempCN = shipname.match(/\(cn: .+;/gui) || []
+                for (let i = 0; i < nations.length; i++) {
+                    if (names.en.indexOf(nations[i]) !== -1) {
+                        names.en = names.en.replace(nations[i], "").trim();
+                    }
+                }
+
+                const tempCN = shipname.match(/\(cn: .+;/gui) || [];
                 if (tempCN.length >= 1) {
                     names.cn = tempCN[0].replace(/^\(cn: /gui, "").replace(/;$/gui, "");
                 }
 
-                const tempJP = shipname.match(/jp: .+\)/gui) || []
+                const tempJP = shipname.match(/jp: .+\)/gui) || [];
                 if (tempJP.length >= 1) {
                     names.jp = tempJP[0].replace(/^jp: /gui, "").replace(/\)$/gui, "");
                 }
             }
 
-            let buildTime = shipdata[0].children[1].children[0].data;
+            let buildTime = shipdata[0].children[0].children[0].data;
             if (buildTime && buildTime.charAt(buildTime.length - 1) === "(")
                 buildTime = buildTime.slice(0, -1);
 
-            const stars = shipdata[1].children[1].data; // .next
+            const stars = shipdata[1].children[1].data;
             const shipClass = shipdata[2].children[0].children[0].data;
             const shipID = shipdata[3].children[0].data;
-            const nationality = shipdata[4].children[2].children[0].data; // .next.next
-            const hullType = shipdata[5].children[3].children[0].data; // .next.next.next
+            const nationality = shipdata[4].children[2].children[0].data;
+            const hullType = shipdata[5].children[2].children[0].data;
 
             // Check which rarity it is and use the appropriate string
-            let rarity: string | null = null;
-            const str = $("tbody tr td")[1].children[0].attribs.src.toLowerCase();
-            if (str.indexOf("normal") !== -1)
-                rarity = "Common";
-            else if (str.indexOf("elite") !== -1)
-                rarity = "Elite";
-            else if (str.indexOf("superrare") !== -1)
-                rarity = "Super Rare";
-            else if (str.indexOf("rare") !== -1)
-                rarity = "Rare";
-            else if (str.indexOf("legendary") !== -1)
-                rarity = "Legendary";
+            let rarity = "";
+            const str = $("tbody tr td")[1].children[0].attribs.title.toLowerCase();
+            switch (str) {
+                case "normal":
+                    rarity = "Common";
+                    break;
+                case "rare":
+                    rarity = "Rare";
+                    break;
+                case "elite":
+                    rarity = "Elite";
+                    break;
+                case "super rare":
+                    rarity = "Super Rare";
+                    break;
+                case "legendary":
+                    rarity = "Legendary";
+                    break;
+                case "ultra rare":
+                    rarity = "Ultra Rare";
+                    break;
+                case "priority":
+                    rarity = "Priority";
+                    break;
+                case "decisive":
+                    rarity = "Decisive";
+                    break;
+                case "unreleased":
+                    rarity = "Unreleased"
+                    break;
+                default:
+                    rarity = "Unkown"
+                    break;
+            }
 
             return res.status(200).json({
                 statusCode: 200,

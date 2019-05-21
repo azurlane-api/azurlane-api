@@ -1,5 +1,5 @@
 import cheerio from "cheerio";
-import axios, { AxiosResponse } from "axios";
+import axios, { AxiosResponse, AxiosRequestConfig } from "axios";
 import { Router, Request, Response } from "express";
 import { Controller, Settings, ConstructionData } from "../../../utils/Interfaces";
 
@@ -8,7 +8,7 @@ export default class BuildGET {
     public router: Router;
     public settings: Settings;
 
-    constructor(controller: Controller) {
+    public constructor(controller: Controller) {
         this.path = "/build";
         this.router = controller.router;
         this.settings = controller.settings;
@@ -26,9 +26,11 @@ export default class BuildGET {
             });
         }
 
+        // eslint-disable-next-line init-declarations
         let response: AxiosResponse;
         try {
-            response = await axios.get(`${this.settings.baseUrl}/Building`);
+            const reqConfig: AxiosRequestConfig = { headers: { "User-Agent": this.settings.userAgent } }
+            response = await axios.get(`${this.settings.baseUrl}/Building`, reqConfig);
         } catch (e) {
             return res.status(400).json({
                 statusCode: 400,
@@ -40,20 +42,20 @@ export default class BuildGET {
         try {
             const $ = cheerio.load(response.data);
             const data: ConstructionData[] = [];
-            const filtered = $("table[style=\"text-align:left;margin:auto;font-weight:700;width:100%\"] tbody")[0].children.filter((obj) => obj.name === "tr");
-            filtered.forEach((item) => {
+            const filtered = $("table[style=\"text-align:left;margin:auto;font-weight:700;width:100%\"] tbody")[0].children.filter((obj): boolean => obj.name === "tr");
+            filtered.forEach((item): void => {
                 const val = item.children[0].children[0].data;
                 if (val === "Construction Time") return;
 
                 const names: string[] = [];
-                item.children[1].children.filter((obj) => obj.name === "table").forEach((i) => {
+                item.children[1].children.filter((obj): boolean => obj.name === "table").forEach((i): void => {
                     names.push(i.children[1].children[0].children[1].children[0].children[0].children[0].attribs.title);
                 });
 
                 data.push({ time: val ? val : "", ships: names });
             });
 
-            const result = data.find((obj) => obj.time === time);
+            const result = data.find((obj): boolean => obj.time === time);
             if (!result) {
                 return res.status(400).json({
                     statusCode: 400,
