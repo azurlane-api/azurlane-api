@@ -46,7 +46,7 @@ export default class ShipGET {
             const $ = cheerio.load(response.data);
             const image = this.settings.baseUrl + $(".image img")[0].attribs.src;
             const shipdata = $("tbody tr td");
-            const shipname = $(".mw-parser-output span")[0].children[0].data;
+            const shipname = $(".mw-parser-output .nomobile div div")[0].children[0].data;
             const names: Names = { full: null, en: null, cn: null, jp: null, kr: null };
 
             const list = $("div[id^=\"tabber-\"] .tabbertab");
@@ -63,7 +63,7 @@ export default class ShipGET {
 
             if (shipname) {
                 names.full = shipname.trim();
-                names.en = shipname.replace(/ \([a-z]{2}: .+; [a-z]{2}: .+; [a-z]{2}: .+\)/gui, "").trim();
+                names.en = shipname.substring(0, shipname.indexOf("(")).trim();
 
                 for (let i = 0; i < nations.length; i++) {
                     if (names.en.indexOf(nations[i]) !== -1) {
@@ -71,9 +71,9 @@ export default class ShipGET {
                     }
                 }
 
-                const cn = shipname.match(/\(cn: .+; j/gui) || [];
+                const cn = shipname.match(/\(cn: .+;/gui) || [];
                 if (cn.length >= 1) {
-                    names.cn = cn[0].replace(/^\(cn: /gui, "").replace(/; j$/gui, "");
+                    names.cn = cn[0].substring(0, cn[0].indexOf(";")).replace("(cn: ", "");
                 }
 
                 const jp = shipname.match(/jp: .+;/gui) || [];
@@ -148,9 +148,9 @@ export default class ShipGET {
                         value: stars ? stars.trim() : null,
                         count: stars ? (stars.match(/★/gui) || []).length : 0
                     },
-                    class: shipClass ? shipClass : null,
-                    nationality: nationality ? nationality : null,
-                    hullType: hullType ? hullType : null
+                    class: shipClass ? shipClass.trim() : null,
+                    nationality: nationality ? nationality.trim() : null,
+                    hullType: hullType ? hullType.trim() : null
                 }
             });
         } catch (error) {
