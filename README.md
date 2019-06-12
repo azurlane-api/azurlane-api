@@ -1,7 +1,7 @@
 # al-api
 Api that returns azur lane data
 
-api url: https://azurlane-api.herokuapp.com/v1
+api url: https://api.kurozeropb.info/v1/azurlane
 
 | Routes | Param  |
 |:------:|:------:|
@@ -10,9 +10,7 @@ api url: https://azurlane-api.herokuapp.com/v1
 
 ## Examples
 #### /ship
-- https://azurlane-api.herokuapp.com/v1/ship?name=prinz%20eugen
-- https://azurlane-api.herokuapp.com/v1/ship?name=prinz_eugen
-- https://azurlane-api.herokuapp.com/v1/ship?name=Prinz_Eugen
+- https://api.kurozeropb.info/v1/azurlane/ship?name=Prinz_Eugen
 
 #### /build
-- https://azurlane-api.herokuapp.com/v1/build?time=00:24:00
+- https://api.kurozeropb.info/v1/azurlane/build?time=00:24:00
