@@ -2,7 +2,6 @@ import cheerio from "cheerio";
 import axios, { AxiosResponse, AxiosRequestConfig } from "axios";
 import { Router, Request, Response } from "express";
 import { Controller, Settings, Names, Skin } from "../../../utils/Interfaces";
-import { nations } from "../../../utils/Helpers";
 
 export default class ShipGET {
     public path: string;
@@ -78,9 +77,9 @@ export default class ShipGET {
                     names.cn = cn[0].substring(0, cn[0].indexOf(";")).replace("(cn: ", "");
                 }
 
-                const jp = shipname.match(/jp: .+;/gui) || [];
+                const jp = shipname.match(/jp: .+[;\)]/gui) || [];
                 if (jp.length >= 1) {
-                    names.jp = jp[0].replace(/^jp: /gui, "").replace(/;$/gui, "");
+                    names.jp = jp[0].replace(/^jp: /gui, "").replace(/[;\)]$/gui, "");
                 }
 
                 const kr = shipname.match(/kr: .+\)/gui) || [];
