@@ -64,10 +64,10 @@ export default class ShipGET {
             }
 
             const names: Names = {
-                en: $(".azl_box_title")[0].children[0].data || null,
-                cn: $("span[lang='zh']")[0].children[0].data || null,
-                jp: $("span[lang='ja']")[0].children[0].data || null,
-                kr: $("span[lang='ko']")[0].children[0].data || null
+                en: $(".azl_box_title")[0] ? $(".azl_box_title")[0].children[0].data || null : null,
+                cn: $("span[lang='zh']")[0] ? $("span[lang='zh']")[0].children[0].data || null : null,
+                jp: $("span[lang='ja']")[0] ? $("span[lang='ja']")[0].children[0].data || null : null,
+                kr: $("span[lang='ko']")[0] ? $("span[lang='ko']")[0].children[0].data || null : null
             };
 
             const list = $("div[id^=\"tabber-\"] .tabbertab");
