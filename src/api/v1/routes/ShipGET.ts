@@ -46,7 +46,15 @@ export default class ShipGET {
             const $ = cheerio.load(response.data);
             const image = this.settings.baseUrl + $(".image img")[0].attribs.src;
             const shipdata = $("tbody tr td");
-            const shipname = $(".mw-parser-output .nomobile div div")[0].children[0].data;
+
+            let enName = $(".azl_box_title")[0].children[0].data;
+            let shipname = $(".mw-parser-output .nomobile div div")[0].children[0].data;
+            if (shipname && shipname.length <= 5) {
+                const short = $(".mw-parser-output .nomobile div div")[0].children[0]
+                enName = enName ? enName : short.next.attribs.title;
+                shipname = short.data + enName + short.next.next.data;
+            }
+
             const names: Names = { full: null, en: null, cn: null, jp: null, kr: null };
 
             const list = $("div[id^=\"tabber-\"] .tabbertab");
@@ -63,13 +71,7 @@ export default class ShipGET {
 
             if (shipname) {
                 names.full = shipname.trim();
-                names.en = shipname.substring(0, shipname.indexOf("(")).trim();
-
-                for (let i = 0; i < nations.length; i++) {
-                    if (names.en.indexOf(nations[i]) !== -1) {
-                        names.en = names.en.replace(nations[i], "").trim();
-                    }
-                }
+                names.en = enName || null;
 
                 const cn = shipname.match(/\(cn: .+;/gui) || [];
                 if (cn.length >= 1) {

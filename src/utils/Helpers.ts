@@ -6,7 +6,8 @@ export const nations: string[] = [
     "USS",   // Eagle Union
     "HMS",   // Royal Navy
     "KMS",   // Ironblood
-    "ROC",   // Eastern Radiance
+    "ROC",   // Eastern Radiance (Yat Sen)
+    "PRAN",  // Eastern Radiance
     "SN",    // North Union
     "FFNF",  // Iris Libre
     "MNF",   // Vichya Dominion
