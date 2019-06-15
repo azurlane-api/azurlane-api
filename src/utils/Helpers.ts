@@ -1,7 +1,17 @@
+/** Capitalize a word */
 export function capitalize(str: string): string {
-    return str.charAt(0).toUpperCase() + str.slice(1);
+    if (str.startsWith("(")) return str.slice(0, 1) + str.charAt(1).toUpperCase() + str.slice(2)
+    return str.charAt(0).toUpperCase() + str.slice(1)
 }
 
+/** Certain parts of names shouldn't be capitalized */
+export const skipCapitalization: string[] = [
+    "der",
+    "of",
+    "d'Arc"
+];
+
+/** All available nations */
 export const nations: string[] = [
     "USS",   // Eagle Union
     "HMS",   // Royal Navy

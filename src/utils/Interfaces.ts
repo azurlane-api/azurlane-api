@@ -24,7 +24,6 @@ export interface ConstructionData {
 }
 
 export interface Names {
-    full: string | null;
     en: string | null;
     cn: string | null;
     jp: string | null;

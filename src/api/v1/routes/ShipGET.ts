@@ -2,6 +2,7 @@ import cheerio from "cheerio";
 import axios, { AxiosResponse, AxiosRequestConfig } from "axios";
 import { Router, Request, Response } from "express";
 import { Controller, Settings, Names, Skin } from "../../../utils/Interfaces";
+import { capitalize, skipCapitalization, nations } from "../../../utils/Helpers";
 
 export default class ShipGET {
     public path: string;
@@ -26,7 +27,15 @@ export default class ShipGET {
             });
         }
 
-        name = name.replace(/ /gui, "_");
+        name = name.toLowerCase()
+            .replace(/ /gui, "_")
+            .split("_")
+            .map((str) => skipCapitalization.includes(str) ? str : capitalize(str))
+            .join("_");
+
+        if (name.startsWith("Jeanne")) {
+            name = "Jeanne d'Arc";
+        }
 
         // eslint-disable-next-line init-declarations
         let response: AxiosResponse;
@@ -45,16 +54,21 @@ export default class ShipGET {
             const $ = cheerio.load(response.data);
             const image = this.settings.baseUrl + $(".image img")[0].attribs.src;
             const shipdata = $("tbody tr td");
-
-            let enName = $(".azl_box_title")[0].children[0].data;
-            let shipname = $(".mw-parser-output .nomobile div div")[0].children[0].data;
-            if (shipname && shipname.length <= 5) {
-                const short = $(".mw-parser-output .nomobile div div")[0].children[0]
-                enName = enName ? enName : short.next.attribs.title;
-                shipname = short.data + enName + short.next.next.data;
+            let nationalityShort = $(".mw-parser-output .nomobile div div")[0].children[0].data;
+            if (nationalityShort) {
+                for (let i = 0; i < nations.length; i++) {
+                    if (nationalityShort.includes(nations[i])) {
+                        nationalityShort = nationalityShort.substring(0, nations[i].length);
+                    }
+                }
             }
 
-            const names: Names = { full: null, en: null, cn: null, jp: null, kr: null };
+            const names: Names = {
+                en: $(".azl_box_title")[0].children[0].data || null,
+                cn: $("span[lang='zh']")[0].children[0].data || null,
+                jp: $("span[lang='ja']")[0].children[0].data || null,
+                kr: $("span[lang='ko']")[0].children[0].data || null
+            };
 
             const list = $("div[id^=\"tabber-\"] .tabbertab");
             const skins: Skin[] = [];
@@ -68,27 +82,7 @@ export default class ShipGET {
                 }
             }
 
-            if (shipname) {
-                names.full = shipname.trim();
-                names.en = enName || null;
-
-                const cn = shipname.match(/\(cn: .+;/gui) || [];
-                if (cn.length >= 1) {
-                    names.cn = cn[0].substring(0, cn[0].indexOf(";")).replace("(cn: ", "");
-                }
-
-                const jp = shipname.match(/jp: .+[;\)]/gui) || [];
-                if (jp.length >= 1) {
-                    names.jp = jp[0].replace(/^jp: /gui, "").replace(/[;\)]$/gui, "");
-                }
-
-                const kr = shipname.match(/kr: .+\)/gui) || [];
-                if (kr.length >= 1) {
-                    names.kr = kr[0].replace(/^kr: /gui, "").replace(/\)$/gui, "");
-                }
-            }
-
-            let buildTime = shipdata[0].children[0].children[0].data;
+            let buildTime = shipdata[0].children[0].children ? shipdata[0].children[0].children[0].data : null;
             if (buildTime && buildTime.charAt(buildTime.length - 1) === "(")
                 buildTime = buildTime.slice(0, -1);
 
@@ -151,10 +145,12 @@ export default class ShipGET {
                     },
                     class: shipClass ? shipClass.trim() : null,
                     nationality: nationality ? nationality.trim() : null,
+                    nationalityShort: nationalityShort ? nationalityShort.trim() : null,
                     hullType: hullType ? hullType.trim() : null
                 }
             });
         } catch (error) {
+            console.log(error);
             return res.status(500).json({
                 statusCode: 500,
                 statusMessage: "Internal Server Error",
