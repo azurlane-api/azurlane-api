@@ -82,7 +82,7 @@ export default class ShipGET {
                 }
             }
 
-            const chibi = $("img[alt*=\"Chibi\"]")[0].attribs.src;
+            const chibi = $("img[alt*=\"Chibi\"]")[0] ? $("img[alt*=\"Chibi\"]")[0].attribs.src : ""
 
             let buildTime = shipdata[0].children[0].children ? shipdata[0].children[0].children[0].data : null;
             if (buildTime && buildTime.charAt(buildTime.length - 1) === "(")
