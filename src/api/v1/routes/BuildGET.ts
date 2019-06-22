@@ -69,6 +69,7 @@ export default class BuildGET {
                 statusMessage: "OK",
                 message: "The request was successful",
                 construction: {
+                    wikiUrl: `${this.settings.baseUrl}/Building#List_of_Ships_by_Construction_Time`,
                     time: result.time,
                     ships: result.ships
                 }
