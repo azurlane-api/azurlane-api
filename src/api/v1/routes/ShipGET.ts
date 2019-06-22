@@ -82,6 +82,8 @@ export default class ShipGET {
                 }
             }
 
+            const chibi = $("img[alt*=\"Chibi\"]")[0].attribs.src;
+
             let buildTime = shipdata[0].children[0].children ? shipdata[0].children[0].children[0].data : null;
             if (buildTime && buildTime.charAt(buildTime.length - 1) === "(")
                 buildTime = buildTime.slice(0, -1);
@@ -137,6 +139,7 @@ export default class ShipGET {
                     id: shipID ? shipID.trim() : null,
                     names: names,
                     thumbnail: image,
+                    chibi: `${this.settings.baseUrl}/${chibi}`,
                     skins: skins,
                     buildTime: buildTime ? buildTime.trim() : null,
                     rarity: rarity,
