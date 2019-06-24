@@ -135,7 +135,7 @@ export default class ShipGET {
                 statusMessage: "OK",
                 message: "The request was successful",
                 ship: {
-                    wikiUrl: `${this.settings.baseUrl}/${names.en ? names.en.replace(" ", "_") : ""}`,
+                    wikiUrl: `${this.settings.baseUrl}/${names.en ? names.en.replace(/ /gu, "_") : ""}`,
                     id: shipID ? shipID.trim() : null,
                     names: names,
                     thumbnail: image,
