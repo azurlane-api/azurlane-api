@@ -42,14 +42,18 @@ export default class BuildGET {
         try {
             const $ = cheerio.load(response.data);
             const data: ConstructionData[] = [];
-            const filtered = $("table[style=\"text-align:left;margin:auto;font-weight:700;width:100%\"] tbody")[0].children.filter((obj): boolean => obj.name === "tr");
-            filtered.forEach((item): void => {
-                const val = item.children[0].children[0].data;
+            const filtered = $(".wikitable tbody")[4].children.filter((obj): boolean => obj.name === "tr");
+            filtered.forEach((item) => {
+                const val = item.children[0].firstChild.data;
                 if (val === "Construction Time") return;
 
                 const names: string[] = [];
-                item.children[1].children.filter((obj): boolean => obj.name === "table").forEach((i): void => {
-                    names.push(i.children[1].children[0].children[1].children[0].children[0].children[0].attribs.title);
+                const items = item.children[1].children.filter((obj): boolean => obj.name === "div");
+                items.forEach((i): void => {
+                    i.children.forEach((o) => {
+                        if (o.children[1].children[2].children[0].data)
+                            names.push(o.children[1].children[2].children[0].data);
+                    });
                 });
 
                 data.push({ time: val ? val : "", ships: names });
@@ -75,6 +79,7 @@ export default class BuildGET {
                 }
             });
         } catch (error) {
+            console.log(error);
             return res.status(500).json({
                 statusCode: 500,
                 statusMessage: "Internal Server Error",
