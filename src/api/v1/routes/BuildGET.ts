@@ -51,8 +51,11 @@ export default class BuildGET {
                 const items = item.children[1].children.filter((obj): boolean => obj.name === "div");
                 items.forEach((i): void => {
                     i.children.forEach((o) => {
-                        if (o.children[1].children[2].children[0].data)
-                            names.push(o.children[1].children[2].children[0].data);
+                        o.children.forEach((x) => {
+                            if (x.children[0].parent.attribs.style === "text-align:center; border-radius:0 0 7px 7px; background:#444444; color:#eeeeee; font-size:11px; width:70px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; padding:0 2px; box-sizing: border-box") {
+                                names.push(x.children[0].data!);
+                            }
+                        });
                     });
                 });
 
