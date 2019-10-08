@@ -42,19 +42,23 @@ export default class BuildGET {
         try {
             const $ = cheerio.load(response.data);
             const data: ConstructionData[] = [];
-            const filtered = $(".wikitable tbody")[4].children.filter((obj): boolean => obj.name === "tr");
+            const filtered = $(".azltable tbody")[0].children.filter((obj): boolean => obj.name === "tr");
             filtered.forEach((item) => {
                 const val = item.children[0].firstChild.data;
                 if (val === "Construction Time") return;
 
                 const names: string[] = [];
                 const items = item.children[1].children.filter((obj): boolean => obj.name === "div");
-                items.forEach((i): void => {
+                items.forEach((i) => {
                     i.children.forEach((o) => {
                         o.children.forEach((x) => {
-                            if (x.children[0].parent.attribs.style === "text-align:center; border-radius:0 0 7px 7px; background:#444444; color:#eeeeee; font-size:11px; width:70px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; padding:0 2px; box-sizing: border-box") {
-                                names.push(x.children[0].data!);
-                            }
+                            x.children.forEach((y) => {
+                                if (y.attribs.class === "azlicon-caption truncate") {
+                                    y.children.forEach((a) => {
+                                        names.push(a.data!);
+                                    });
+                                }
+                            });
                         });
                     });
                 });
