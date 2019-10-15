@@ -1,7 +1,7 @@
 import cheerio from "cheerio";
 import axios, { AxiosResponse, AxiosRequestConfig } from "axios";
 import { Router, Request, Response } from "express";
-import { Controller, Settings, Names, Skin } from "../../../utils/Interfaces";
+import { Controller, Settings, Names, Skin, Miscellaneous } from "../../../utils/Interfaces";
 import { capitalize, skipCapitalization, nations } from "../../../utils/Helpers";
 
 export default class ShipGET {
@@ -54,7 +54,7 @@ export default class ShipGET {
             const $ = cheerio.load(response.data);
             const image = this.settings.baseUrl + $(".image img")[0].attribs.src;
             const shipdata = $("tbody tr td");
-            let nationalityShort = $(".mw-parser-output .nomobile div div")[0].children[0].data;
+            let nationalityShort = $(".mw-parser-output .nomobile div div")[3].children[0].data;
             if (nationalityShort) {
                 for (let i = 0; i < nations.length; i++) {
                     if (nationalityShort.includes(nations[i])) {
@@ -130,6 +130,49 @@ export default class ShipGET {
                     break;
             }
 
+            const miscellaneous: Miscellaneous = {
+                artist: null,
+                web: null,
+                pixiv: null,
+                twitter: null,
+                voiceActress: null
+            };
+
+            const mList = $(".wikitable[style='color:black; background-color:#f8f9fa; width:100%'] tbody")[0];
+            const mFiltered = mList.children.filter((i) => i.type === "tag" && i.name === "tr");
+            mFiltered.forEach((i) => {
+                const children = i.children.filter((o) => o.type === "tag" && o.name === "td");
+                if (children.length >= 2) {
+                    const title = children[0].children[0].data!.replace("\n", "");
+                    const link = children[1].children[0].attribs ? children[1].children[0].attribs.href.startsWith("/Artists") ? `${this.settings.baseUrl}${children[1].children[0].attribs.href}` : children[1].children[0].attribs.href : "";
+                    const value = children[1].children[0].children ? children[1].children[0].children[0].data || "" : "";
+
+                    switch (title) {
+                        case "Artist": {
+                            miscellaneous.artist = { link: link, name: value };
+                            break;
+                        }
+                        case "Web": {
+                            miscellaneous.web = { link: link, name: value };
+                            break;
+                        }
+                        case "Pixiv": {
+                            miscellaneous.pixiv = { link: link, name: value };
+                            break;
+                        }
+                        case "Twitter": {
+                            miscellaneous.twitter = { link: link, name: value };
+                            break;
+                        }
+                        case "Voice Actress": {
+                            const actress = $("a.extiw")[0];
+                            miscellaneous.voiceActress = { link: actress.attribs.href, name: actress.children[0].data || "" };
+                            break;
+                        }
+                    }
+                }
+            });
+
             return res.status(200).json({
                 statusCode: 200,
                 statusMessage: "OK",
@@ -150,7 +193,8 @@ export default class ShipGET {
                     class: shipClass ? shipClass.trim() : null,
                     nationality: nationality ? nationality.trim() : null,
                     nationalityShort: nationalityShort ? nationalityShort.trim() : null,
-                    hullType: hullType ? hullType.trim() : null
+                    hullType: hullType ? hullType.trim() : null,
+                    miscellaneous: miscellaneous
                 }
             });
         } catch (error) {

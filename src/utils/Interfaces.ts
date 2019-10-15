@@ -34,3 +34,11 @@ export interface Skin {
     title: string | null;
     image: string | null;
 }
+
+export interface Miscellaneous {
+    artist: { link: string, name: string } | null,
+    web: { link: string, name: string } | null,
+    pixiv: { link: string, name: string } | null,
+    twitter: { link: string, name: string } | null,
+    voiceActress: { link: string, name: string } | null
+}
