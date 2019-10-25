@@ -34,7 +34,9 @@
         "compile": "yarn clean && tsc -p . && yarn copy-assets",
         "check": "gts check",
         "clean": "gts clean",
-        "fix": "gts fix"
+        "fix": "gts fix",
+        "docs:dev": "vuepress dev docs",
+        "docs:build": "vuepress build docs"
     },
     "dependencies": {
         "axios": "^0.19.0",
@@ -56,6 +58,7 @@
         "gts": "^1.1.0",
         "ts-node": "^8.4.1",
         "tsconfig-paths": "^3.9.0",
-        "typescript": "^3.6.4"
+        "typescript": "^3.6.4",
+        "vuepress": "^1.2.0"
     }
 }

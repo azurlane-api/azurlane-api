@@ -130,44 +130,37 @@ export default class ShipGET {
                     break;
             }
 
-            const miscellaneous: Miscellaneous = {
-                artist: null,
-                web: null,
-                pixiv: null,
-                twitter: null,
-                voiceActress: null
-            };
-
+            const miscellaneous: Miscellaneous = {};
             const mList = $(".wikitable[style='color:black; background-color:#f8f9fa; width:100%'] tbody")[0];
             const mFiltered = mList.children.filter((i) => i.type === "tag" && i.name === "tr");
             mFiltered.forEach((i) => {
                 const children = i.children.filter((o) => o.type === "tag" && o.name === "td");
                 if (children.length >= 2) {
-                    const title = children[0].children[0].data!.replace("\n", "");
-                    const link = children[1].children[0].attribs ? children[1].children[0].attribs.href.startsWith("/Artists") ? `${this.settings.baseUrl}${children[1].children[0].attribs.href}` : children[1].children[0].attribs.href : "";
-                    const value = children[1].children[0].children ? children[1].children[0].children[0].data || "" : "";
+                    const title = children[0].children[0].data ? children[0].children[0].data.replace("\n", "") : null;
+                    const link = children[1].children[0].attribs ? children[1].children[0].attribs.href.startsWith("/Artists") ? `${this.settings.baseUrl}${children[1].children[0].attribs.href}` : children[1].children[0].attribs.href : null;
+                    const name = children[1].children[0].children ? children[1].children[0].children[0].data || null : null;
 
                     switch (title) {
                         case "Artist": {
-                            miscellaneous.artist = { link: link, name: value };
+                            miscellaneous.artist = { link, name };
                             break;
                         }
                         case "Web": {
-                            miscellaneous.web = { link: link, name: value };
+                            miscellaneous.web = { link, name };
                             break;
                         }
                         case "Pixiv": {
-                            miscellaneous.pixiv = { link: link, name: value };
+                            miscellaneous.pixiv = { link, name };
                             break;
                         }
                         case "Twitter": {
-                            miscellaneous.twitter = { link: link, name: value };
+                            miscellaneous.twitter = { link, name };
                             break;
                         }
                         case "Voice Actress": {
                             let actress = $("a.extiw")[0];
                             if (shipID && (shipID.trim() === "236" || shipID.trim() === "101")) actress = $(".external.text[rel='nofollow']")[3];
-                            miscellaneous.voiceActress = { link: actress ? actress.attribs.href : null, name: actress ? actress.children[0].data || "" : null };
+                            miscellaneous.voiceActress = { link: actress ? actress.attribs.href : null, name: actress ? actress.children[0].data || null : null };
                             break;
                         }
                     }

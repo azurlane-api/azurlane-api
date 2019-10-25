@@ -35,10 +35,15 @@ export interface Skin {
     image: string | null;
 }
 
+export interface MiscellaneousData {
+    link: string | null;
+    name: string | null;
+}
+
 export interface Miscellaneous {
-    artist: { link: string, name: string } | null,
-    web: { link: string, name: string } | null,
-    pixiv: { link: string, name: string } | null,
-    twitter: { link: string, name: string } | null,
-    voiceActress: { link: string | null, name: string | null } | null
+    artist?: MiscellaneousData;
+    web?: MiscellaneousData;
+    pixiv?: MiscellaneousData;
+    twitter?: MiscellaneousData;
+    voiceActress?: MiscellaneousData;
 }
