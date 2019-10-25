@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Ship | Azur Lane API</title>
+    <meta name="description" content="Api that returns azur lane data">
+    
+    
+    <link rel="preload" href="/al-api/assets/css/0.styles.49192ad8.css" as="style"><link rel="preload" href="/al-api/assets/js/app.4464c35f.js" as="script"><link rel="preload" href="/al-api/assets/js/2.ec3a6e39.js" as="script"><link rel="preload" href="/al-api/assets/js/7.9b9b9133.js" as="script"><link rel="prefetch" href="/al-api/assets/js/3.419108df.js"><link rel="prefetch" href="/al-api/assets/js/4.c4832647.js"><link rel="prefetch" href="/al-api/assets/js/5.f79ce49e.js"><link rel="prefetch" href="/al-api/assets/js/6.e12ce798.js"><link rel="prefetch" href="/al-api/assets/js/8.1c9e0161.js">
+    <link rel="stylesheet" href="/al-api/assets/css/0.styles.49192ad8.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/al-api/" class="home-link router-link-active"><!----> <span class="site-name">Azur Lane API</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <!----> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="ship"><a href="#ship" class="header-anchor">#</a> Ship</h1> <p>Used to get ship info.</p> <p><strong>URL</strong> : <code>/v1/azurlane/ship</code></p> <p><strong>URL Parameters</strong> : <code>ship=[string]</code> where <code>ship</code> is the name of the ship you want to get.</p> <p><strong>Method</strong> : <code>GET</code></p> <p><strong>Auth required</strong> : NO</p> <h2 id="success-response"><a href="#success-response" class="header-anchor">#</a> Success Response</h2> <p><strong>Code</strong> : <code>200 OK</code></p> <p><strong>Content example</strong></p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;statusCode&quot;</span><span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;statusMessage&quot;</span><span class="token operator">:</span> <span class="token string">&quot;OK&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;message&quot;</span><span class="token operator">:</span> <span class="token string">&quot;The request was successful&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;ship&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;wikiUrl&quot;</span><span class="token operator">:</span> <span class="token string">&quot;https://azurlane.koumakan.jp/Prinz_Eugen&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token string">&quot;244&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;names&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">&quot;en&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Prinz Eugen&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;cn&quot;</span><span class="token operator">:</span> <span class="token string">&quot;欧根亲王&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;jp&quot;</span><span class="token operator">:</span> <span class="token string">&quot;プリンツ・オイゲン&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;kr&quot;</span><span class="token operator">:</span> <span class="token string">&quot;프린츠 오이겐&quot;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;thumbnail&quot;</span><span class="token operator">:</span> <span class="token string">&quot;https://azurlane.koumakan.jp/w/images/f/f7/Prinz_EugenIcon.png&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;chibi&quot;</span><span class="token operator">:</span> <span class="token string">&quot;https://azurlane.koumakan.jp//w/images/thumb/5/5d/Prinz_EugenChibi.png/147px-Prinz_EugenChibi.png&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;skins&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;title&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Default&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;image&quot;</span><span class="token operator">:</span> <span class="token string">&quot;https://azurlane.koumakan.jp/w/images/thumb/6/67/Prinz_Eugen.png/600px-Prinz_Eugen.png&quot;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;title&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Symphonic Fate&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;image&quot;</span><span class="token operator">:</span> <span class="token string">&quot;https://azurlane.koumakan.jp/w/images/thumb/3/3a/Prinz_EugenWedding.png/600px-Prinz_EugenWedding.png&quot;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;title&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Unfading Smile&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;image&quot;</span><span class="token operator">:</span> <span class="token string">&quot;https://azurlane.koumakan.jp/w/images/thumb/f/f9/Prinz_EugenSummer.png/600px-Prinz_EugenSummer.png&quot;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;title&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Unfading Smile (JP)&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;image&quot;</span><span class="token operator">:</span> <span class="token string">&quot;https://azurlane.koumakan.jp/w/images/thumb/e/e6/Prinz_EugenSummerJP.png/600px-Prinz_EugenSummerJP.png&quot;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;title&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Dance of a Hundred Flowers&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;image&quot;</span><span class="token operator">:</span> <span class="token string">&quot;https://azurlane.koumakan.jp/w/images/thumb/3/34/Prinz_EugenNew_Year.png/600px-Prinz_EugenNew_Year.png&quot;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;title&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Cordial Cornflower&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;image&quot;</span><span class="token operator">:</span> <span class="token string">&quot;https://azurlane.koumakan.jp/w/images/thumb/2/22/Prinz_EugenParty.png/600px-Prinz_EugenParty.png&quot;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;buildTime&quot;</span><span class="token operator">:</span> <span class="token string">&quot;02:00:00&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;rarity&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Super Rare&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;stars&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;★★★☆☆☆&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;count&quot;</span><span class="token operator">:</span> <span class="token number">3</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;class&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Admiral Hipper&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;nationality&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Ironblood&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;nationalityShort&quot;</span><span class="token operator">:</span> <span class="token string">&quot;KMS&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;hullType&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Heavy Cruiser&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;miscellaneous&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">&quot;artist&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                <span class="token property">&quot;link&quot;</span><span class="token operator">:</span> <span class="token string">&quot;https://azurlane.koumakan.jp/Artists#realmbw&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;realmbw&quot;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;web&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                <span class="token property">&quot;link&quot;</span><span class="token operator">:</span> <span class="token string">&quot;https://weibo.com/realmbw&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;realmbw_瞌睡魔&quot;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;pixiv&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                <span class="token property">&quot;link&quot;</span><span class="token operator">:</span> <span class="token string">&quot;https://www.pixiv.net/member.php?id=529070&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;RJ&quot;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;twitter&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                <span class="token property">&quot;link&quot;</span><span class="token operator">:</span> <span class="token string">&quot;https://twitter.com/realmbw&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;RJ&quot;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;voiceActress&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                <span class="token property">&quot;link&quot;</span><span class="token operator">:</span> <span class="token string">&quot;https://en.wikipedia.org/wiki/Ayane_Sakura&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Ayane Sakura&quot;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="error-response"><a href="#error-response" class="header-anchor">#</a> Error Response</h2> <p><strong>Condition</strong> : If something server-side goes wrong.</p> <p><strong>Code</strong> : <code>500 Internal Server Error</code></p> <p><strong>Content</strong> :</p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;statusCode&quot;</span><span class="token operator">:</span> <span class="token number">500</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;statusMessage&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Internal Server Error&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;message&quot;</span><span class="token operator">:</span> <span class="token string">&quot;The server encountered an unexpected condition that prevented it from fulfilling the request.&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;error&quot;</span><span class="token operator">:</span> <span class="token string">&quot;TypeError: Cannot read property 'attribs' of undefined&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>Condition</strong> : Bad request param.</p> <p><strong>Code</strong> : <code>400 Bad Request</code></p> <p><strong>Content</strong> :</p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;statusCode&quot;</span><span class="token operator">:</span> <span class="token number">400</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;statusMessage&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Bad Request&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;message&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Invalid ship name.&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/al-api/assets/js/app.4464c35f.js" defer></script><script src="/al-api/assets/js/2.ec3a6e39.js" defer></script><script src="/al-api/assets/js/7.9b9b9133.js" defer></script>
+  </body>
+</html>
