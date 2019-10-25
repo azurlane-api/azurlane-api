@@ -40,5 +40,5 @@ export interface Miscellaneous {
     web: { link: string, name: string } | null,
     pixiv: { link: string, name: string } | null,
     twitter: { link: string, name: string } | null,
-    voiceActress: { link: string, name: string } | null
+    voiceActress: { link: string | null, name: string | null } | null
 }

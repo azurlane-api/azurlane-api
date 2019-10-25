@@ -165,8 +165,9 @@ export default class ShipGET {
                             break;
                         }
                         case "Voice Actress": {
-                            const actress = $("a.extiw")[0];
-                            miscellaneous.voiceActress = { link: actress.attribs.href, name: actress.children[0].data || "" };
+                            let actress = $("a.extiw")[0];
+                            if (shipID && (shipID.trim() === "236" || shipID.trim() === "101")) actress = $(".external.text[rel='nofollow']")[3];
+                            miscellaneous.voiceActress = { link: actress ? actress.attribs.href : null, name: actress ? actress.children[0].data || "" : null };
                             break;
                         }
                     }
