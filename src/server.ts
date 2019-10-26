@@ -39,8 +39,7 @@ async function main(): Promise<void> {
         res.status(301).redirect("/v1");
     });
 
-    server.listen(port, (error: Error) => {
-        if (error) return logger.error("LISTEN", error.toString());
+    server.listen(port, () => {
         logger.ready(`Starting http server on port ${port}`);
     });
 }

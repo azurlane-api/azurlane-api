@@ -70,19 +70,31 @@ export default class ShipGET {
                 kr: $("span[lang='ko']")[0] ? $("span[lang='ko']")[0].children[0].data || null : null
             };
 
+            let chibis = $("img[alt*='Chibi']");
+            let chibi = "";
+            if (chibis.length >= 1) {
+                chibi = $("img[alt*='Chibi']")[0].attribs.src;
+            }
+
             const list = $("div[id^=\"tabber-\"] .tabbertab");
             const skins: Skin[] = [];
             for (let i = 0; i < list.length; i++) {
                 const child = list[i].children.find((c): boolean => c.attribs ? c.attribs.class ? c.attribs.class.indexOf("adaptiveratioimg") !== -1 : false : false);
                 if (child) {
+                    let skinChibi = null;
+                    if (i === 0) {
+                        skinChibi = `${this.settings.baseUrl}${chibi}`;
+                    } else {
+                        skinChibi = chibis[i] ? `${this.settings.baseUrl}${chibis[i].attribs.srcset.split(",")[1].replace("2x", "").trim()}` : null;
+                    }
+
                     skins.push({
                         title: list[i].attribs.title,
-                        image: this.settings.baseUrl + child.children[0].children[0].attribs.src
+                        image: this.settings.baseUrl + child.children[0].children[0].attribs.src,
+                        chibi: skinChibi
                     });
                 }
             }
-
-            const chibi = $("img[alt*=\"Chibi\"]")[0] ? $("img[alt*=\"Chibi\"]")[0].attribs.src : ""
 
             let buildTime = shipdata[0].children[0].children ? shipdata[0].children[0].children[0].data : null;
             if (buildTime && buildTime.charAt(buildTime.length - 1) === "(")

@@ -33,6 +33,7 @@ export interface Names {
 export interface Skin {
     title: string | null;
     image: string | null;
+    chibi: string | null;
 }
 
 export interface MiscellaneousData {
