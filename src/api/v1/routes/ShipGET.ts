@@ -152,8 +152,8 @@ export default class ShipGET {
                 const ths = el.children.filter((e) => e.type === "tag" && e.name === "th");
                 for (let i = 0; i < tds.length; i++) {
                     const value = tds[i].children[0].data ? tds[i].children[0].data!.replace("\n", "") : null
-                    const name = ths[i].children[0].attribs.alt;
-                    const image = `${this.settings.baseUrl}${ths[i].children[0].attribs.src}`;
+                    const name = ths[i].children[0].attribs.alt ? ths[i].children[0].attribs.alt : ths[i].children[0].attribs.title || null;
+                    const image = ths[i].children[0].attribs.src ? `${this.settings.baseUrl}${ths[i].children[0].attribs.src}` : null;
                     baseStats.push({ name, image, value });
                 }
             });
@@ -167,8 +167,8 @@ export default class ShipGET {
                 const ths = el.children.filter((e) => e.type === "tag" && e.name === "th");
                 for (let i = 0; i < tds.length; i++) {
                     const value = tds[i].children[0].data ? tds[i].children[0].data!.replace("\n", "") : null
-                    const name = ths[i].children[0].attribs.alt;
-                    const image = `${this.settings.baseUrl}${ths[i].children[0].attribs.src}`;
+                    const name = ths[i].children[0].attribs.alt ? ths[i].children[0].attribs.alt : ths[i].children[0].attribs.title || null;
+                    const image = ths[i].children[0].attribs.src ? `${this.settings.baseUrl}${ths[i].children[0].attribs.src}` : null;
                     hundredStats.push({ name, image, value });
                 }
             });
@@ -182,8 +182,8 @@ export default class ShipGET {
                 const ths = el.children.filter((e) => e.type === "tag" && e.name === "th");
                 for (let i = 0; i < tds.length; i++) {
                     const value = tds[i].children[0].data ? tds[i].children[0].data!.replace("\n", "") : null
-                    const name = ths[i].children[0].attribs.alt;
-                    const image = `${this.settings.baseUrl}${ths[i].children[0].attribs.src}`;
+                    const name = ths[i].children[0].attribs.alt ? ths[i].children[0].attribs.alt : ths[i].children[0].attribs.title || null;
+                    const image = ths[i].children[0].attribs.src ? `${this.settings.baseUrl}${ths[i].children[0].attribs.src}` : null;
                     hundredtwentyStats.push({ name, image, value });
                 }
             });
