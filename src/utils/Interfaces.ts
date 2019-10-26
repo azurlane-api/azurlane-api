@@ -36,6 +36,18 @@ export interface Skin {
     chibi: string | null;
 }
 
+export interface StatsItem {
+    name: string | null;
+    image: string | null;
+    value: string | null;
+}
+
+export interface Stats {
+    base?: StatsItem[];
+    100?: StatsItem[];
+    120?: StatsItem[];
+}
+
 export interface MiscellaneousData {
     link: string | null;
     name: string | null;

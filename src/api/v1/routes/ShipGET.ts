@@ -1,7 +1,7 @@
 import cheerio from "cheerio";
 import axios, { AxiosResponse, AxiosRequestConfig } from "axios";
 import { Router, Request, Response } from "express";
-import { Controller, Settings, Names, Skin, Miscellaneous } from "../../../utils/Interfaces";
+import { Controller, Settings, Names, Skin, Miscellaneous, Stats, StatsItem } from "../../../utils/Interfaces";
 import { capitalize, skipCapitalization, nations } from "../../../utils/Helpers";
 
 export default class ShipGET {
@@ -142,6 +142,53 @@ export default class ShipGET {
                     break;
             }
 
+            const stats: Stats = {};
+
+            const baseStats: StatsItem[] = [];
+            const bsElement = $("div[title='Base Stats'] table tbody")[0];
+            const bsFiltered = bsElement.children.filter((el) => el.type === "tag" && el.name === "tr");
+            bsFiltered.forEach((el) => {
+                const tds = el.children.filter((e) => e.type === "tag" && e.name === "td");
+                const ths = el.children.filter((e) => e.type === "tag" && e.name === "th");
+                for (let i = 0; i < tds.length; i++) {
+                    const value = tds[i].children[0].data ? tds[i].children[0].data!.replace("\n", "") : null
+                    const name = ths[i].children[0].attribs.alt;
+                    const image = `${this.settings.baseUrl}${ths[i].children[0].attribs.src}`;
+                    baseStats.push({ name, image, value });
+                }
+            });
+            stats.base = baseStats;
+
+            const hundredStats: StatsItem[] = [];
+            const hElement = $("div[title='Level 100'] table tbody")[0];
+            const hFiltered = hElement.children.filter((el) => el.type === "tag" && el.name === "tr");
+            hFiltered.forEach((el) => {
+                const tds = el.children.filter((e) => e.type === "tag" && e.name === "td");
+                const ths = el.children.filter((e) => e.type === "tag" && e.name === "th");
+                for (let i = 0; i < tds.length; i++) {
+                    const value = tds[i].children[0].data ? tds[i].children[0].data!.replace("\n", "") : null
+                    const name = ths[i].children[0].attribs.alt;
+                    const image = `${this.settings.baseUrl}${ths[i].children[0].attribs.src}`;
+                    hundredStats.push({ name, image, value });
+                }
+            });
+            stats[100] = hundredStats;
+
+            const hundredtwentyStats: StatsItem[] = [];
+            const htElement = $("div[title='Level 120'] table tbody")[0];
+            const htFiltered = htElement.children.filter((el) => el.type === "tag" && el.name === "tr");
+            htFiltered.forEach((el) => {
+                const tds = el.children.filter((e) => e.type === "tag" && e.name === "td");
+                const ths = el.children.filter((e) => e.type === "tag" && e.name === "th");
+                for (let i = 0; i < tds.length; i++) {
+                    const value = tds[i].children[0].data ? tds[i].children[0].data!.replace("\n", "") : null
+                    const name = ths[i].children[0].attribs.alt;
+                    const image = `${this.settings.baseUrl}${ths[i].children[0].attribs.src}`;
+                    hundredtwentyStats.push({ name, image, value });
+                }
+            });
+            stats[120] = hundredtwentyStats;
+
             const miscellaneous: Miscellaneous = {};
             const mList = $(".wikitable[style='color:black; background-color:#f8f9fa; width:100%'] tbody")[0];
             const mFiltered = mList.children.filter((i) => i.type === "tag" && i.name === "tr");
@@ -200,6 +247,7 @@ export default class ShipGET {
                     nationality: nationality ? nationality.trim() : null,
                     nationalityShort: nationalityShort ? nationalityShort.trim() : null,
                     hullType: hullType ? hullType.trim() : null,
+                    stats: stats,
                     miscellaneous: miscellaneous
                 }
             });
