@@ -1,18 +1,13 @@
 import cheerio from "cheerio";
 import axios, { AxiosResponse, AxiosRequestConfig } from "axios";
-import { Router, Request, Response } from "express";
-import { Controller, Settings, ConstructionData } from "../../../utils/Interfaces";
+import BaseRoute from "../BaseRoute";
+import { Request, Response } from "express";
+import { Controller, ConstructionData } from "../../../utils/Interfaces";
 
-export default class BuildGET {
-    public path: string;
-    public router: Router;
-    public settings: Settings;
+export default class BuildGET extends BaseRoute {
 
     public constructor(controller: Controller) {
-        this.path = "/build";
-        this.router = controller.router;
-        this.settings = controller.settings;
-
+        super({ path: "/build", controller });
         this.router.get(this.path, this.run.bind(this));
     }
 

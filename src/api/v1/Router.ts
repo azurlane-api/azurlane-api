@@ -1,19 +1,21 @@
 import express from "express";
 import path from "path";
+import Collection from "@kurozero/collection";
+import Logger from "../../utils/Logger";
+import BaseRoute from "./BaseRoute";
 import { promises as fs } from "fs";
 import { Settings, APIOptions } from "../../utils/Interfaces";
-import Logger from "../../utils/Logger";
 
 export default class APIv1 {
     public router: express.Router;
-    public routes: Map<string, any>;
+    public routes: Collection<BaseRoute>;
     public path: string;
     public settings: Settings;
     public logger: Logger;
 
     public constructor(options: APIOptions) {
         this.router = express.Router();
-        this.routes = new Map();
+        this.routes = new Collection(BaseRoute);
         this.path = "/v1";
         this.settings = options.settings;
         this.logger = options.logger;
@@ -29,10 +31,10 @@ export default class APIv1 {
         for (const file of files) {
             if (file.endsWith(".ts") || file.endsWith(".js")) {
                 const temp = await import(path.join(__dirname, "/routes/", file));
-                const route = new temp.default({ router: this.router, settings: this.settings, logger: this.logger });
+                const route: BaseRoute = new temp.default({ router: this.router, settings: this.settings, logger: this.logger });
                 
                 this.logger.info("LOAD", `Connected route: ${this.path}${route.path}`);
-                this.routes.set(route.path, route);
+                this.routes.add(route);
             }
         }
     }

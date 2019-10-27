@@ -1,16 +1,11 @@
-import { Router, Request, Response } from "express";
-import { Controller, Settings } from "../../../utils/Interfaces";
+import BaseRoute from "../BaseRoute";
+import { Request, Response } from "express";
+import { Controller } from "../../../utils/Interfaces";
 
-export default class TestGET {
-    public path: string;
-    public router: Router;
-    public settings: Settings;
+export default class TestGET extends BaseRoute {
 
     public constructor(controller: Controller) {
-        this.path = "/test";
-        this.router = controller.router;
-        this.settings = controller.settings;
-
+        super({ path: "/test", controller });
         this.router.get(this.path, this.run.bind(this));
     }
 

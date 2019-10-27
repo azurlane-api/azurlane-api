@@ -1,19 +1,14 @@
 import cheerio from "cheerio";
 import axios, { AxiosResponse, AxiosRequestConfig } from "axios";
-import { Router, Request, Response } from "express";
-import { Controller, Settings, Names, Skin, Miscellaneous, Stats, StatsItem } from "../../../utils/Interfaces";
+import { Request, Response } from "express";
+import { Controller, Names, Skin, Miscellaneous, Stats, StatsItem } from "../../../utils/Interfaces";
 import { capitalize, skipCapitalization, nations } from "../../../utils/Helpers";
+import BaseRoute from "../BaseRoute";
 
-export default class ShipGET {
-    public path: string;
-    public router: Router;
-    public settings: Settings;
+export default class ShipGET extends BaseRoute {
 
     public constructor(controller: Controller) {
-        this.path = "/ship";
-        this.router = controller.router;
-        this.settings = controller.settings;
-
+        super({ path: "/ship", controller });
         this.router.get(this.path, this.run.bind(this));
     }
 
