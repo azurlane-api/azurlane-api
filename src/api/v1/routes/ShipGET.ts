@@ -54,7 +54,7 @@ export default class ShipGET {
             const $ = cheerio.load(response.data);
             const image = this.settings.baseUrl + $(".image img")[0].attribs.src;
             const shipdata = $("tbody tr td");
-            let nationalityShort = $(".mw-parser-output .nomobile div div")[3].children[0].data;
+            let nationalityShort = $("div[style='border-style:solid; border-width:1px 1px 0px 1px; border-color:#a2a9b1; width:100%; background-color:#eaecf0; text-align:center; font-weight:bold']")[0].children[0].data;
             if (nationalityShort) {
                 for (let i = 0; i < nations.length; i++) {
                     if (nationalityShort.includes(nations[i])) {
