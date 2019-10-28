@@ -2,7 +2,7 @@ import cheerio from "cheerio";
 import axios, { AxiosResponse, AxiosRequestConfig } from "axios";
 import { Request, Response } from "express";
 import { Controller, Names, Skin, Miscellaneous, Stats, StatsItem } from "../../../utils/Interfaces";
-import { capitalize, skipCapitalization, nations } from "../../../utils/Helpers";
+import { capitalize, skipCapitalization, nations, capitalizeAll } from "../../../utils/Helpers";
 import BaseRoute from "../BaseRoute";
 
 export default class ShipGET extends BaseRoute {
@@ -26,6 +26,7 @@ export default class ShipGET extends BaseRoute {
             .replace(/ /gui, "_")
             .split("_")
             .map((str) => skipCapitalization.includes(str) ? str : capitalize(str))
+            .map((str) => capitalizeAll.includes(str) ? str.toUpperCase() : str)
             .join("_");
 
         if (name.startsWith("Jeanne")) {

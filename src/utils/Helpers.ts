@@ -4,6 +4,10 @@ export function capitalize(str: string): string {
     return str.charAt(0).toUpperCase() + str.slice(1)
 }
 
+export const capitalizeAll: string[] = [
+    "Mkii"
+];
+
 /** Certain parts of names shouldn't be capitalized */
 export const skipCapitalization: string[] = [
     "der",
@@ -21,5 +25,6 @@ export const nations: string[] = [
     "SN",    // North Union
     "FFNF",  // Iris Libre
     "MNF",   // Vichya Dominion
-    "IJN"    // Sakura Empire
+    "IJN",   // Sakura Empire
+    "UNIV"   // Universal
 ];
