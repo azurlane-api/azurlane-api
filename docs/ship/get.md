@@ -31,37 +31,36 @@ Used to get ship info.
             "kr": "프린츠 오이겐"
         },
         "thumbnail": "https://azurlane.koumakan.jp/w/images/f/f7/Prinz_EugenIcon.png",
-        "chibi": "https://azurlane.koumakan.jp//w/images/thumb/5/5d/Prinz_EugenChibi.png/147px-Prinz_EugenChibi.png",
         "skins": [
             {
                 "title": "Default",
                 "image": "https://azurlane.koumakan.jp/w/images/thumb/6/67/Prinz_Eugen.png/600px-Prinz_Eugen.png",
-                "chibi": "https://azurlane.koumakan.jp/w/images/thumb/5/5d/Prinz_EugenChibi.png/147px-Prinz_EugenChibi.png"
+                "chibi": "https://azurlane.koumakan.jp/w/images/5/5d/Prinz_EugenChibi.png"
             },
             {
                 "title": "Symphonic Fate",
                 "image": "https://azurlane.koumakan.jp/w/images/thumb/3/3a/Prinz_EugenWedding.png/600px-Prinz_EugenWedding.png",
-                "chibi": "https://azurlane.koumakan.jp/w/images/thumb/d/dd/Prinz_EugenWeddingChibi.png/34px-Prinz_EugenWeddingChibi.png"
+                "chibi": "https://azurlane.koumakan.jp/w/images/d/dd/Prinz_EugenWeddingChibi.png"
             },
             {
                 "title": "Unfading Smile",
                 "image": "https://azurlane.koumakan.jp/w/images/thumb/f/f9/Prinz_EugenSummer.png/600px-Prinz_EugenSummer.png",
-                "chibi": "https://azurlane.koumakan.jp/w/images/thumb/5/59/Prinz_EugenSummerChibi.png/38px-Prinz_EugenSummerChibi.png"
+                "chibi": "https://azurlane.koumakan.jp/w/images/5/59/Prinz_EugenSummerChibi.png"
             },
             {
                 "title": "Unfading Smile (JP)",
                 "image": "https://azurlane.koumakan.jp/w/images/thumb/e/e6/Prinz_EugenSummerJP.png/600px-Prinz_EugenSummerJP.png",
-                "chibi": "https://azurlane.koumakan.jp/w/images/thumb/0/0a/Prinz_EugenSummerJPChibi.png/33px-Prinz_EugenSummerJPChibi.png"
+                "chibi": "https://azurlane.koumakan.jp/w/images/0/0a/Prinz_EugenSummerJPChibi.png"
             },
             {
                 "title": "Dance of a Hundred Flowers",
                 "image": "https://azurlane.koumakan.jp/w/images/thumb/3/34/Prinz_EugenNew_Year.png/600px-Prinz_EugenNew_Year.png",
-                "chibi": "https://azurlane.koumakan.jp/w/images/thumb/d/d3/Prinz_EugenNew_YearChibi.png/37px-Prinz_EugenNew_YearChibi.png"
+                "chibi": "https://azurlane.koumakan.jp/w/images/d/d3/Prinz_EugenNew_YearChibi.png"
             },
             {
                 "title": "Cordial Cornflower",
                 "image": "https://azurlane.koumakan.jp/w/images/thumb/2/22/Prinz_EugenParty.png/600px-Prinz_EugenParty.png",
-                "chibi": "https://azurlane.koumakan.jp/w/images/thumb/4/44/Prinz_EugenPartyChibi.png/35px-Prinz_EugenPartyChibi.png"
+                "chibi": "https://azurlane.koumakan.jp/w/images/4/44/Prinz_EugenPartyChibi.png"
             }
         ],
         "buildTime": "02:00:00",

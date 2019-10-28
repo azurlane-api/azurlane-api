@@ -65,22 +65,19 @@ export default class ShipGET extends BaseRoute {
                 kr: $("span[lang='ko']")[0] ? $("span[lang='ko']")[0].children[0].data || null : null
             };
 
-            let chibis = $("img[alt*='Chibi']");
-            let chibi = "";
-            if (chibis.length >= 1) {
-                chibi = $("img[alt*='Chibi']")[0].attribs.src;
-            }
-
+            const chibis = $("img[alt*='Chibi']");
             const list = $("div[id^=\"tabber-\"] .tabbertab");
             const skins: Skin[] = [];
             for (let i = 0; i < list.length; i++) {
                 const child = list[i].children.find((c): boolean => c.attribs ? c.attribs.class ? c.attribs.class.indexOf("adaptiveratioimg") !== -1 : false : false);
                 if (child) {
                     let skinChibi = null;
-                    if (i === 0) {
-                        skinChibi = `${this.settings.baseUrl}${chibi}`;
+                    const chibi = chibis[i] ? chibis[i].attribs.src.split("/") : null;
+                    if (!chibi) {
+                        skinChibi = null;
                     } else {
-                        skinChibi = chibis[i] ? `${this.settings.baseUrl}${chibis[i].attribs.srcset.split(",")[1].replace("2x", "").trim()}` : null;
+                        chibi.pop();
+                        skinChibi = this.settings.baseUrl + chibi.join("/").replace("/thumb", "");
                     }
 
                     skins.push({
@@ -230,7 +227,6 @@ export default class ShipGET extends BaseRoute {
                     id: shipID ? shipID.trim() : null,
                     names: names,
                     thumbnail: image,
-                    chibi: `${this.settings.baseUrl}/${chibi}`,
                     skins: skins,
                     buildTime: buildTime ? buildTime.trim() : null,
                     rarity: rarity,
