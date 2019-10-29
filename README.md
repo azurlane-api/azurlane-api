@@ -1,4 +1,4 @@
-# al-api
+# Azur Lane API
 Api that returns azur lane data
 
 # Docs
