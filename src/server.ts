@@ -1,6 +1,5 @@
 import express from "express";
 import RateLimit from "express-rate-limit";
-import path from "path";
 import settings from "../settings";
 import Logger from "./utils/Logger";
 import APIv1 from "./api/v1/Router";
