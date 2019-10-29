@@ -21,7 +21,12 @@ export default class APIv1 {
         this.logger = options.logger;
 
         this.router.get("/", (_req, res) => {
-            res.render("index");
+            res.status(200).json({
+                statusCode: 200,
+                statusMessage: "OK",
+                message: "The request was successful",
+                routes: this.routes.map((route) => `${route.path}`)
+            });
         });
     }
 

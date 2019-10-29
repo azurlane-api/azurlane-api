@@ -6,7 +6,7 @@ import Logger from "./utils/Logger";
 import APIv1 from "./api/v1/Router";
 
 const server = express();
-const port = settings.env === "production" ? process.env.PORT : 8080;
+const port = process.env.PORT || 8080;
 const logger = new Logger();
 const api = new APIv1({ settings, logger });
 
@@ -26,8 +26,6 @@ async function main(): Promise<void> {
     server.enable("trust proxy");
     server.disable("x-powered-by");
 
-    server.set("views", path.join(__dirname, "views"));
-    server.set("view engine", "ejs");
     server.set("json spaces", 4);
     server.set("env", settings.env);
 
@@ -36,7 +34,7 @@ async function main(): Promise<void> {
     server.use(api.path, api.router);
 
     server.get("/", (_req, res) => {
-        res.status(301).redirect("/v1");
+        res.status(302).redirect("/v1");
     });
 
     server.listen(port, () => {
