@@ -2,7 +2,7 @@
 
 Used to get construction info.
 
-**URL** : `/v1/azurlane/build`
+**URL** : `/build`
 
 **URL Parameters** : `build=[string]` where `build` is the construction time.
 

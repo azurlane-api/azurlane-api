@@ -2,7 +2,7 @@
 
 Used to get ship info.
 
-**URL** : `/v1/azurlane/ship`
+**URL** : `/ship`
 
 **URL Parameters** : `ship=[string]` where `ship` is the name of the ship you want to get.
 
