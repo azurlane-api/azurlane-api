@@ -167,6 +167,21 @@ export default class ShipGET extends BaseRoute {
             });
             stats[100] = hundredStats;
 
+            const hundredRetrofitStats: StatsItem[] = [];
+            const hrElement = $("div[title='Level 100 Retrofit'] table tbody")[0];
+            const hrFiltered = hrElement && hrElement.children ? hrElement.children.filter((el) => el.type === "tag" && el.name === "tr") : [];
+            hrFiltered.forEach((el) => {
+                const tds = el.children.filter((e) => e.type === "tag" && e.name === "td");
+                const ths = el.children.filter((e) => e.type === "tag" && e.name === "th");
+                for (let i = 0; i < tds.length; i++) {
+                    const value = tds[i].children[0].data ? tds[i].children[0].data!.replace("\n", "") : null
+                    const name = ths[i].children[0].attribs.alt ? ths[i].children[0].attribs.alt : ths[i].children[0].attribs.title || null;
+                    const image = ths[i].children[0].attribs.src ? `${this.settings.baseUrl}${ths[i].children[0].attribs.src}` : null;
+                    hundredRetrofitStats.push({ name, image, value });
+                }
+            });
+            stats.retrofit100 = hrElement && hrElement.children ? hundredRetrofitStats : null;
+
             const hundredtwentyStats: StatsItem[] = [];
             const htElement = $("div[title='Level 120'] table tbody")[0];
             const htFiltered = htElement.children.filter((el) => el.type === "tag" && el.name === "tr");
@@ -181,6 +196,21 @@ export default class ShipGET extends BaseRoute {
                 }
             });
             stats[120] = hundredtwentyStats;
+
+            const hundredtwentyRetrofitStats: StatsItem[] = [];
+            const htrElement = $("div[title='Level 120 Retrofit'] table tbody")[0];
+            const htrFiltered = htrElement && htrElement.children ? htrElement.children.filter((el) => el.type === "tag" && el.name === "tr") : [];
+            htrFiltered.forEach((el) => {
+                const tds = el.children.filter((e) => e.type === "tag" && e.name === "td");
+                const ths = el.children.filter((e) => e.type === "tag" && e.name === "th");
+                for (let i = 0; i < tds.length; i++) {
+                    const value = tds[i].children[0].data ? tds[i].children[0].data!.replace("\n", "") : null
+                    const name = ths[i].children[0].attribs.alt ? ths[i].children[0].attribs.alt : ths[i].children[0].attribs.title || null;
+                    const image = ths[i].children[0].attribs.src ? `${this.settings.baseUrl}${ths[i].children[0].attribs.src}` : null;
+                    hundredtwentyRetrofitStats.push({ name, image, value });
+                }
+            });
+            stats.retrofit120 = htrElement && htrElement.children ? hundredtwentyRetrofitStats : null;
 
             const miscellaneous: Miscellaneous = {};
             const mList = $(".wikitable[style='color:black; background-color:#f8f9fa; width:100%'] tbody")[0];
