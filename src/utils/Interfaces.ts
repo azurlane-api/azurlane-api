@@ -46,6 +46,8 @@ export interface Stats {
     base?: StatsItem[];
     100?: StatsItem[];
     120?: StatsItem[];
+    retrofit100?: StatsItem[] | null;
+    retrofit120?: StatsItem[] | null;
 }
 
 export interface MiscellaneousData {

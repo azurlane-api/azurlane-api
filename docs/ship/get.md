@@ -274,7 +274,9 @@ Used to get ship info.
                     "image": "https://azurlane.koumakan.jp/w/images/thumb/1/16/ASW.png/25px-ASW.png",
                     "value": "0"
                 }
-            ]
+            ],
+            "retrofit100": null,
+            "retrofit120": null
         },
         "miscellaneous": {
             "artist": {
