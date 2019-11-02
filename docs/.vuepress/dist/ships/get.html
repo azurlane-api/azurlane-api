@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Ship | Azur Lane API</title>
+    <meta name="description" content="Api that returns azur lane data">
+    
+    
+    <link rel="preload" href="/al-api/assets/css/0.styles.28539784.css" as="style"><link rel="preload" href="/al-api/assets/js/app.4d27248a.js" as="script"><link rel="preload" href="/al-api/assets/js/2.ec3a6e39.js" as="script"><link rel="preload" href="/al-api/assets/js/8.c86fbcbf.js" as="script"><link rel="prefetch" href="/al-api/assets/js/3.a01b05e6.js"><link rel="prefetch" href="/al-api/assets/js/4.c4832647.js"><link rel="prefetch" href="/al-api/assets/js/5.166729d2.js"><link rel="prefetch" href="/al-api/assets/js/6.b0cb3744.js"><link rel="prefetch" href="/al-api/assets/js/7.8bfb841c.js"><link rel="prefetch" href="/al-api/assets/js/9.f68989a5.js">
+    <link rel="stylesheet" href="/al-api/assets/css/0.styles.28539784.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/al-api/" class="home-link router-link-active"><!----> <span class="site-name">Azur Lane API</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <!----> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="ship"><a href="#ship" class="header-anchor">#</a> Ship</h1> <p>Used to get ship info.</p> <p><strong>URL</strong> : <code>/ships</code></p> <p><strong>URL Parameters</strong> :</p> <ul><li><code>orderBy=[string]</code> can be one of <code>rarity</code>, <code>type</code> or <code>affiliation</code>.</li> <li><code>rarity=[string]</code> depending on what you used in orderBy, this is which rarity.</li> <li><code>type=[string]</code> depending on what you used in orderBy, this is which type.</li> <li><code>affiliation=[string]</code> depending on what you used in orderBy, this is which affiliation.</li></ul> <p><strong>Method</strong> : <code>GET</code></p> <p><strong>Auth required</strong> : NO</p> <h2 id="success-response"><a href="#success-response" class="header-anchor">#</a> Success Response</h2> <p><strong>Code</strong> : <code>200 OK</code></p> <p><strong>Content example</strong></p> <p>https://azurlane-api.appspot.com/v1/ships?orderBy=affiliation&amp;affiliation=Sardegna%20Empire</p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;statusCode&quot;</span><span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;statusMessage&quot;</span><span class="token operator">:</span> <span class="token string">&quot;OK&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;message&quot;</span><span class="token operator">:</span> <span class="token string">&quot;The request was successful&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;ships&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+            <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token string">&quot;410&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Littorio&quot;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+            <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token string">&quot;411&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Conte di Cavour&quot;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+            <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token string">&quot;412&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Giulio Cesare&quot;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+            <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token string">&quot;413&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Zara&quot;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+            <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token string">&quot;414&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Trento&quot;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+            <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token string">&quot;415&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Carabiniere&quot;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+            <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token string">&quot;9006&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Pola&quot;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+            <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token string">&quot;9007&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Vittorio Veneto&quot;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+
+</code></pre></div><h2 id="error-response"><a href="#error-response" class="header-anchor">#</a> Error Response</h2> <p><strong>Condition</strong> : If something server-side goes wrong.</p> <p><strong>Code</strong> : <code>500 Internal Server Error</code></p> <p><strong>Content</strong> :</p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;statusCode&quot;</span><span class="token operator">:</span> <span class="token number">500</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;statusMessage&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Internal Server Error&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;message&quot;</span><span class="token operator">:</span> <span class="token string">&quot;The server encountered an unexpected condition that prevented it from fulfilling the request.&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;error&quot;</span><span class="token operator">:</span> <span class="token string">&quot;TypeError: Cannot read property 'attribs' of undefined&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>Condition</strong> : Bad request param.</p> <p><strong>Code</strong> : <code>400 Bad Request</code></p> <p><strong>Content</strong> :</p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;statusCode&quot;</span><span class="token operator">:</span> <span class="token number">400</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;statusMessage&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Bad Request&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;message&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Invalid orderBy param&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/al-api/assets/js/app.4d27248a.js" defer></script><script src="/al-api/assets/js/2.ec3a6e39.js" defer></script><script src="/al-api/assets/js/8.c86fbcbf.js" defer></script>
+  </body>
+</html>

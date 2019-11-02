@@ -26,8 +26,54 @@ export const nations: string[] = [
     "ROC",   // Eastern Radiance (Yat Sen)
     "PRAN",  // Eastern Radiance
     "SN",    // North Union
+    "RN",    // Sardegna Empire
     "FFNF",  // Iris Libre
     "MNF",   // Vichya Dominion
     "IJN",   // Sakura Empire
     "UNIV"   // Universal
+];
+
+export const affiliations: string[] = [
+    "Eagle Union",
+    "Royal Navy",
+    "Ironblood",
+    "Eastern Radiance",
+    "North Union",
+    "Sardegna Empire",
+    "Iris Libre",
+    "Vichya Dominion",
+    "Sakura Empire",
+    "Universal",
+    // Collabs
+    "Utawarerumono",
+    "Neptunia",
+    "KizunaAI",
+    "Bilibili"
+];
+
+export const rarities: string[] = [
+    "Normal",
+    "Rare",
+    "Elite",
+    "Super Rare",
+    "Priority",
+    "Decisive",
+    "Ultra Rare",
+    "Unreleased"
+];
+
+export const types: string[] = [
+    "Destroyer",
+    "Light Cruiser",
+    "Heavy Cruiser",
+    "Battleship",
+    "Light Aircraft Carrier",
+    "Aircraft Carrier",
+    "Repair Ship",
+    "Battlecruiser",
+    "Monitor",
+    "Submarine",
+    "Submarine Carrier",
+    "Large Cruiser",
+    "BBV"
 ];
