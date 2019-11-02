@@ -1,6 +1,6 @@
 {
     "name": "al-api",
-    "version": "1.2.1",
+    "version": "1.2.2",
     "description": "Api that returns azur lane data",
     "main": "src/server.ts",
     "engines": {
