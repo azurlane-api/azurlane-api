@@ -4,7 +4,7 @@
     "description": "Api that returns azur lane data",
     "main": "src/server.ts",
     "engines": {
-        "node": "10.x.x"
+        "node": ">=10.x.x"
     },
     "homepage": "https://github.com/KurozeroPB/al-api#readme",
     "repository": {
