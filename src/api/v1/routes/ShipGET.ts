@@ -16,7 +16,19 @@ export default class ShipGET extends BaseRoute {
         const reqConfig: AxiosRequestConfig = { headers: { "User-Agent": this.settings.userAgent } }
         let name: string = req.query.name;
         if (!name) {
-            let id: string = req.query.id;
+            // eslint-disable-next-line init-declarations
+            let id: number;
+            try {
+                id = parseInt(req.query.id)
+            } catch (e) {
+                return res.status(500).json({
+                    statusCode: 500,
+                    statusMessage: "Internal Server Error",
+                    message: "The server encountered an unexpected condition that prevented it from fulfilling the request.",
+                    error: e.toString()
+                });
+            }
+            
             if (!id) {
                 return res.status(400).json({
                     statusCode: 400,
