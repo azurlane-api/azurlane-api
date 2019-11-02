@@ -25,6 +25,8 @@ export default class ShipGET extends BaseRoute {
                 });
             }
 
+            id = capitalize(id);
+
             try {
                 const resp = await axios.get("https://azurlane.koumakan.jp/List_of_Ships", reqConfig);
                 const $ = cheerio.load(resp.data);
@@ -35,7 +37,7 @@ export default class ShipGET extends BaseRoute {
                     return res.status(400).json({
                         statusCode: 400,
                         statusMessage: "Bad Request",
-                        message: "Invalid ship name."
+                        message: "Invalid ship id."
                     });
                 }
             } catch (e) {

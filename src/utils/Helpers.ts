@@ -5,7 +5,10 @@ export function capitalize(str: string): string {
 }
 
 export const capitalizeAll: string[] = [
-    "Mkii"
+    "Mkii",
+    "Hms",
+    "Hdn",
+    "Ai"
 ];
 
 /** Certain parts of names shouldn't be capitalized */
