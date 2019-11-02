@@ -6,7 +6,7 @@ Used to get ship info.
 
 **URL Parameters** :
 - `ship=[string]` where `ship` is the name of the ship you want to get.
-- `id=[number]` where `id` is the id of the ship you want to get.
+- `id=[string]` where `id` is the id of the ship you want to get.
 
 **Method** : `GET`
 
