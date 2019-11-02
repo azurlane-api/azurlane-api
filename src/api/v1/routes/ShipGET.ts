@@ -13,13 +13,46 @@ export default class ShipGET extends BaseRoute {
     }
 
     public async run(req: Request, res: Response): Promise<Response> {
+        const reqConfig: AxiosRequestConfig = { headers: { "User-Agent": this.settings.userAgent } }
         let name: string = req.query.name;
         if (!name) {
-            return res.status(400).json({
-                statusCode: 400,
-                statusMessage: "Bad Request",
-                message: "Missing a name query param."
-            });
+            let id: string = req.query.id;
+            if (!id) {
+                return res.status(400).json({
+                    statusCode: 400,
+                    statusMessage: "Bad Request",
+                    message: "Missing a name/id query param."
+                });
+            }
+
+            try {
+                const resp = await axios.get("https://azurlane.koumakan.jp/List_of_Ships", reqConfig);
+                const $ = cheerio.load(resp.data);
+                const ship = $(`td[data-sort-value="${id}"]`)[0];
+                if (ship) {
+                    name = ship.firstChild.attribs.title;
+                } else {
+                    return res.status(400).json({
+                        statusCode: 400,
+                        statusMessage: "Bad Request",
+                        message: "Invalid ship name."
+                    });
+                }
+            } catch (e) {
+                if (e.response) {
+                    return res.status(e.response.status).json({
+                        statusCode: e.response.status,
+                        statusMessage: e.response.statusText,
+                        message: "Failed to get info from https://azurlane.koumakan.jp/"
+                    });
+                } else {
+                    return res.status(400).json({
+                        statusCode: 400,
+                        statusMessage: "Bad Request",
+                        message: "Failed to get info from https://azurlane.koumakan.jp/"
+                    });
+                }
+            }
         }
 
         name = name.toLowerCase()
@@ -36,21 +69,29 @@ export default class ShipGET extends BaseRoute {
         // eslint-disable-next-line init-declarations
         let response: AxiosResponse;
         try {
-            const reqConfig: AxiosRequestConfig = { headers: { "User-Agent": this.settings.userAgent } }
             response = await axios.get(`${this.settings.baseUrl}/${name}`, reqConfig);
         } catch (e) {
-            return res.status(400).json({
-                statusCode: 400,
-                statusMessage: "Bad Request",
-                message: "Invalid ship name."
-            });
+            if (e.response) {
+                return res.status(e.response.status).json({
+                    statusCode: e.response.status,
+                    statusMessage: e.response.statusText,
+                    message: "Failed to get info from https://azurlane.koumakan.jp/"
+                });
+            } else {
+                return res.status(400).json({
+                    statusCode: 400,
+                    statusMessage: "Bad Request",
+                    message: "Invalid ship name."
+                });
+            }
         }
 
         try {
             const $ = cheerio.load(response.data);
             const image = this.settings.baseUrl + $(".image img")[0].attribs.src;
             const shipdata = $("tbody tr td");
-            let nationalityShort = $("div[style='border-style:solid; border-width:1px 1px 0px 1px; border-color:#a2a9b1; width:100%; background-color:#eaecf0; text-align:center; font-weight:bold']")[0].children[0].data;
+            const shipname = $("div[style='border-style:solid; border-width:1px 1px 0px 1px; border-color:#a2a9b1; width:100%; background-color:#eaecf0; text-align:center; font-weight:bold']");
+            let nationalityShort = shipname ? shipname[0].children[0].data : null;
             if (nationalityShort) {
                 for (let i = 0; i < nations.length; i++) {
                     if (nationalityShort.includes(nations[i])) {
