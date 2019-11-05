@@ -19,5 +19,5 @@ export default abstract class BaseRoute {
         this.settings = context.controller.settings;
     }
 
-    public abstract async run(req: Request, res: Response): Promise<Response>;
+    public abstract async run(req: Request, res: Response): Promise<unknown>;
 }

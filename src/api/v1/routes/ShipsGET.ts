@@ -6,6 +6,12 @@ import { Request, Response } from "express";
 import { Controller } from "../../../utils/Interfaces";
 import { capitalize, rarities, types, affiliations } from "../../../utils/Helpers";
 
+export enum Order {
+    RARITY = "rarity",
+    TYPE = "type",
+    AFFILIATION = "affiliation"
+}
+
 export default class ShipsGET extends BaseRoute {
     public $?: CheerioStatic
 
@@ -14,8 +20,8 @@ export default class ShipsGET extends BaseRoute {
         this.router.get(this.path, this.run.bind(this));
     }
 
-    public async run(req: Request, res: Response): Promise<any> {
-        const orderBy: string = req.query.orderBy;        
+    public async run(req: Request, res: Response): Promise<Response | undefined> {
+        const orderBy: Order = req.query.orderBy;        
         if (!orderBy) {
             return res.status(400).json({
                 statusCode: 400,
@@ -44,13 +50,13 @@ export default class ShipsGET extends BaseRoute {
         }
 
         switch (orderBy) {
-            case "rarity": 
+            case Order.RARITY: 
                 this.getShipsByRarity(req, res);
                 break;
-            case "type":
+            case Order.TYPE:
                 this.getShipsByType(req, res);
                 break;
-            case "affiliation":
+            case Order.AFFILIATION:
                 this.getShipsByAffiliation(req, res);
                 break;
             default:
