@@ -253,7 +253,7 @@ export default class ShipGET extends BaseRoute {
                     hundredtwentyRetrofitStats.push({ name, image, value });
                 }
             });
-            stats.retrofit120 = htrElement && htrElement.children ? hundredtwentyRetrofitStats : null;
+            stats.retrofit120 = hundredtwentyRetrofitStats.length >= 1 ? hundredtwentyRetrofitStats : null;
 
             const miscellaneous: Miscellaneous = {};
             const mList = $(".wikitable[style='color:black; background-color:#f8f9fa; width:100%'] tbody")[0];
@@ -261,9 +261,9 @@ export default class ShipGET extends BaseRoute {
             mFiltered.forEach((i) => {
                 const children = i.children.filter((o) => o.type === "tag" && o.name === "td");
                 if (children.length >= 2) {
-                    const title = children[0].children[0].data ? children[0].children[0].data.replace("\n", "") : null;
-                    const link = children[1].children[0].attribs ? children[1].children[0].attribs.href.startsWith("/Artists") ? `${this.settings.baseUrl}${children[1].children[0].attribs.href}` : children[1].children[0].attribs.href : null;
-                    const name = children[1].children[0].children ? children[1].children[0].children[0].data || null : null;
+                    const title = children?.[0]?.children?.[0]?.data?.replace("\n", "")
+                    const link = children?.[1]?.children?.[0]?.attribs?.href?.startsWith("/Artists") ? `${this.settings.baseUrl}${children?.[1]?.children?.[0]?.attribs?.href ?? ""}` : children?.[1]?.children?.[0]?.attribs?.href ?? null;
+                    const name = children?.[1]?.children?.[0]?.children?.[0]?.data ?? null;
 
                     switch (title) {
                         case "Artist": {
@@ -285,7 +285,7 @@ export default class ShipGET extends BaseRoute {
                         case "Voice Actress": {
                             let actress = $("a.extiw")[0];
                             if (shipID && (shipID.trim() === "236" || shipID.trim() === "101")) actress = $(".external.text[rel='nofollow']")[3];
-                            miscellaneous.voiceActress = { link: actress ? actress.attribs.href : null, name: actress ? actress.children[0].data || null : null };
+                            miscellaneous.voiceActress = { link: actress?.attribs?.href ?? null, name: actress?.children?.[0]?.data ?? null };
                             break;
                         }
                     }
@@ -297,21 +297,21 @@ export default class ShipGET extends BaseRoute {
                 statusMessage: "OK",
                 message: "The request was successful",
                 ship: {
-                    wikiUrl: `${this.settings.baseUrl}/${names.en ? names.en.replace(/ /gu, "_") : ""}`,
-                    id: shipID ? shipID.trim() : null,
+                    wikiUrl: `${this.settings.baseUrl}/${names.en?.replace(/ /gu, "_") ?? ""}`,
+                    id: shipID?.trim() ?? null,
                     names: names,
                     thumbnail: image,
                     skins: skins,
-                    buildTime: buildTime ? buildTime.trim() : null,
+                    buildTime: buildTime?.trim() ?? null,
                     rarity: rarity,
                     stars: {
-                        value: stars ? stars.trim() : null,
-                        count: stars ? (stars.match(/★/gui) || []).length : 0
+                        value: stars?.trim() ?? null,
+                        count: (stars?.match(/★/gui) ?? []).length
                     },
-                    class: shipClass ? shipClass.trim() : null,
-                    nationality: nationality ? nationality.trim() : null,
-                    nationalityShort: nationalityShort ? nationalityShort.trim() : null,
-                    hullType: hullType ? hullType.trim() : null,
+                    class: shipClass?.trim() ?? null,
+                    nationality: nationality?.trim() ?? null,
+                    nationalityShort: nationalityShort?.trim() ?? null,
+                    hullType: hullType?.trim() ?? null,
                     stats: stats,
                     miscellaneous: miscellaneous
                 }

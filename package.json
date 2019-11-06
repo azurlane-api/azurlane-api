@@ -1,10 +1,10 @@
 {
     "name": "al-api",
-    "version": "1.2.2",
+    "version": "1.2.3",
     "description": "Api that returns azur lane data",
     "main": "src/server.ts",
     "engines": {
-        "node": ">=10"
+        "node": ">=12"
     },
     "homepage": "https://github.com/KurozeroPB/al-api#readme",
     "repository": {
@@ -27,8 +27,7 @@
         "serve": "cross-env NODE_ENV=development node build/src/server.js",
         "dev": "cross-env NODE_ENV=development node build/src/server.js",
         "test": "cross-env NODE_ENV=development ts-node -r tsconfig-paths/register src/server.ts",
-        "postinstall": "npm run compile && npm run copy-assets",
-        "copy-assets": "cp -R src/views build/src",
+        "postinstall": "npm run compile",
         "gcp-build": "npm run compile",
         "compile": "tsc -p .",
         "deploy": "gcloud app deploy",
@@ -40,11 +39,10 @@
     },
     "dependencies": {
         "@kurozero/collection": "^0.4.8",
-        "@types/axios": "^0.14.0",
         "@types/cheerio": "^0.22.13",
-        "@types/express": "^4.17.1",
+        "@types/express": "^4.17.2",
         "@types/express-rate-limit": "^3.3.3",
-        "@types/node": "^12.11.7",
+        "@types/node": "^12.12.6",
         "axios": "^0.19.0",
         "chalk": "^2.4.2",
         "cheerio": "^1.0.0-rc.3",
@@ -53,7 +51,7 @@
         "express-rate-limit": "^5.0.0",
         "gts": "^1.1.0",
         "moment": "^2.24.0",
-        "typescript": "^3.6.4",
+        "typescript": "3.7.2",
         "winston": "^3.2.1"
     },
     "devDependencies": {
