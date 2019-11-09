@@ -1,6 +1,6 @@
-# Ship
+# Ships
 
-Used to get ship info.
+Used to get ships from a specific rarity, type or affiliation.
 
 **URL** : `/ships`
 
@@ -21,44 +21,17 @@ Used to get ship info.
 **Content example**
 
 https://azurlane-api.appspot.com/v1/ships?orderBy=affiliation&affiliation=Sardegna%20Empire
-```json
+```ts
 {
-    "statusCode": 200,
-    "statusMessage": "OK",
-    "message": "The request was successful",
-    "ships": [
+    statusCode: Number,
+    statusMessage: String,
+    message: String,
+    ships: [
         {
-            "id": "410",
-            "name": "Littorio"
+            id: String,
+            name: String
         },
-        {
-            "id": "411",
-            "name": "Conte di Cavour"
-        },
-        {
-            "id": "412",
-            "name": "Giulio Cesare"
-        },
-        {
-            "id": "413",
-            "name": "Zara"
-        },
-        {
-            "id": "414",
-            "name": "Trento"
-        },
-        {
-            "id": "415",
-            "name": "Carabiniere"
-        },
-        {
-            "id": "9006",
-            "name": "Pola"
-        },
-        {
-            "id": "9007",
-            "name": "Vittorio Veneto"
-        }
+        ...
     ]
 }
 
@@ -72,12 +45,12 @@ https://azurlane-api.appspot.com/v1/ships?orderBy=affiliation&affiliation=Sardeg
 
 **Content** :
 
-```json
+```ts
 {
-    "statusCode": 500,
-    "statusMessage": "Internal Server Error",
-    "message": "The server encountered an unexpected condition that prevented it from fulfilling the request.",
-    "error": "TypeError: Cannot read property 'attribs' of undefined"
+    statusCode: Number,
+    statusMessage: String,
+    message: String,
+    error: String
 }
 ```
 
@@ -87,10 +60,10 @@ https://azurlane-api.appspot.com/v1/ships?orderBy=affiliation&affiliation=Sardeg
 
 **Content** :
 
-```json
+```ts
 {
-    "statusCode": 400,
-    "statusMessage": "Bad Request",
-    "message": "Invalid orderBy param"
+    statusCode: Number,
+    statusMessage: String,
+    message: String
 }
 ```

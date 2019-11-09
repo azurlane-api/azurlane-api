@@ -16,18 +16,15 @@ Used to get construction info.
 
 **Content example**
 
-```json
+```ts
 {
-    "statusCode": 200,
-    "statusMessage": "OK",
-    "message": "The request was successful",
-    "construction": {
-        "time": "00:12:00",
-        "wikiUrl": "https://azurlane.koumakan.jp/Building#List_of_Ships_by_Construction_Time",
-        "ships": [
-            "U-101",
-            "U-81"
-        ]
+    statusCode: Number,
+    statusMessage: String,
+    message: String,
+    construction: {
+        time: String,
+        wikiUrl: String,
+        ships: Array<String>
     }
 }
 ```
@@ -40,12 +37,12 @@ Used to get construction info.
 
 **Content** :
 
-```json
+```ts
 {
-    "statusCode": 500,
-    "statusMessage": "Internal Server Error",
-    "message": "The server encountered an unexpected condition that prevented it from fulfilling the request.",
-    "error": "TypeError: Cannot read property 'attribs' of undefined"
+    statusCode: Number,
+    statusMessage: String,
+    message: String,
+    error: String
 }
 ```
 
@@ -55,10 +52,10 @@ Used to get construction info.
 
 **Content** :
 
-```json
+```ts
 {
-    "statusCode": 400,
-    "statusMessage": "Bad Request",
-    "message": "Invalid construction time."
+    statusCode: Number,
+    statusMessage: String,
+    message: String
 }
 ```
