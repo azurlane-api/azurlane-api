@@ -14,18 +14,18 @@ Used to get construction info.
 
 **Code** : `200 OK`
 
-**Content example**
+**Content return types**
 
 ```ts
-{
-    statusCode: Number,
-    statusMessage: String,
-    message: String,
+interface Response {
+    statusCode: number;
+    statusMessage: string;
+    message: string;
     construction: {
-        time: String,
-        wikiUrl: String,
-        ships: Array<String>
-    }
+        time: string;
+        wikiUrl: string;
+        ships: string[];
+    };
 }
 ```
 
@@ -35,14 +35,14 @@ Used to get construction info.
 
 **Code** : `500 Internal Server Error`
 
-**Content** :
+**Content return types** :
 
 ```ts
-{
-    statusCode: Number,
-    statusMessage: String,
-    message: String,
-    error: String
+interface ErrorResponse {
+    statusCode: number;
+    statusMessage: string;
+    message: string;
+    error: string;
 }
 ```
 
@@ -50,12 +50,12 @@ Used to get construction info.
 
 **Code** : `400 Bad Request`
 
-**Content** :
+**Content return types** :
 
 ```ts
-{
-    statusCode: Number,
-    statusMessage: String,
-    message: String
+interface ErrorResponse {
+    statusCode: number;
+    statusMessage: string;
+    message: string;
 }
 ```

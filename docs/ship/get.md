@@ -16,107 +16,88 @@ Used to get ship info.
 
 **Code** : `200 OK`
 
-**Content example**
+**Content return types**
 
 ```ts
-// `?` means nullable
-{
-    statusCode: Number,
-    statusMessage: String,
-    message: String,
+interface Response {
+    statusCode: number;
+    statusMessage: string;
+    message: string;
     ship: {
-        wikiUrl: String,
-        id?: String,
+        wikiUrl: string;
+        id: string | null;
         names: {
-            en?: String,
-            cn?: String,
-            jp?: String,
-            kr?: String
+            en: string | null;
+            cn: string | null;
+            jp: string | null;
+            kr: string | null;
         },
-        thumbnail: String,
-        skins: [
-            {
-                title?: String,
-                image?: String,
-                chibi?: String
-            },
-            ...
-        ],
-        buildTime?: String,
-        rarity: String,
+        thumbnail: string;
+        skins: {
+            title: string | null;
+            image: string | null;
+            chibi: string | null;
+        }[];
+        buildTime: string | null;
+        rarity: string;
         stars: {
-            value?: String, // example: ★★★☆☆☆
-            count: Number
-        },
-        class?: String,
-        nationality?: String,
-        nationalityShort?: String,
-        hullType?: String,
+            value: string | null; // example: ★★★☆☆☆
+            count: number
+        };
+        class: string | null;
+        nationality: string | null;
+        nationalityShort: string | null;
+        hullType: string | null;
         stats: {
-            100?: [
-                {
-                    name?: String,
-                    image?: String,
-                    value?: String
-                },
-                ...
-            ],
-            120?: [
-                {
-                    name?: String,
-                    image?: String,
-                    value?: String
-                },
-                ...
-            ],
-            base?: [
-                {
-                    name?: String,
-                    image?: String,
-                    value?: String
-                },
-                ...
-            ],
-            retrofit100?: [
-                {
-                    name?: String,
-                    image?: String,
-                    value?: String
-                },
-                ...
-            ],
-            retrofit120?: [
-                {
-                    name?: String,
-                    image?: String,
-                    value?: String
-                },
-                ...
-            ]
+            100: {
+                name: string | null;
+                image: string | null;
+                value: string | null;
+            }[] | null;
+            120: {
+                name: string | null;
+                image: string | null;
+                value: string | null;
+            }[] | null;
+            base: {
+                name: string | null;
+                image: string | null;
+                value: string | null;
+            }[] | null;
+            retrofit100: {
+                name: string | null;
+                image: string | null;
+                value: string | null;
+            }[] | null;
+            retrofit120: {
+                name: string | null;
+                image: string | null;
+                value: string | null;
+            }[] | null;
         },
         miscellaneous: {
-            artist?: {
-                link?: String,
-                name?: String
-            },
-            web?: {
-                link?: String,
-                name?: String
-            },
-            pixiv?: {
-                link?: String,
-                name?: String
-            },
-            twitter?: {
-                link?: String,
-                name?: String
-            },
-            voiceActress?: {
-                link?: String,
-                name?: String
-            }
-        }
-    }
+            artist: {
+                link: string | null;
+                name: string | null;
+            } | null;
+            web: {
+                link: string | null;
+                name: string | null;
+            } | null;
+            pixiv: {
+                link: string | null;
+                name: string | null;
+            } | null;
+            twitter: {
+                link: string | null;
+                name: string | null;
+            } | null;
+            voiceActress: {
+                link: string | null;
+                name: string | null;
+            } | null;
+        };
+    };
 }
 ```
 
@@ -126,14 +107,14 @@ Used to get ship info.
 
 **Code** : `500 Internal Server Error`
 
-**Content** :
+**Content return types** :
 
 ```ts
-{
-    statusCode: Number,
-    statusMessage: String,
-    message: String,
-    error: String
+interface ErrorResponse {
+    statusCode: number;
+    statusMessage: string;
+    message: string;
+    error: string;
 }
 ```
 
@@ -141,12 +122,12 @@ Used to get ship info.
 
 **Code** : `400 Bad Request`
 
-**Content** :
+**Content return types** :
 
 ```ts
-{
-    statusCode: Number,
-    statusMessage: String,
-    message: String
+interface ErrorResponse {
+    statusCode: number;
+    statusMessage: string;
+    message: string;
 }
 ```

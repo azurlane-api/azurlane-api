@@ -18,21 +18,18 @@ Used to get ships from a specific rarity, type or affiliation.
 
 **Code** : `200 OK`
 
-**Content example**
+**Content return types**
 
-https://azurlane-api.appspot.com/v1/ships?orderBy=affiliation&affiliation=Sardegna%20Empire
+[https://azurlane-api.appspot.com/v1/ships?orderBy=affiliation&affiliation=Sardegna%20Empire](https://azurlane-api.appspot.com/v1/ships?orderBy=affiliation&affiliation=Sardegna%20Empire)
 ```ts
-{
-    statusCode: Number,
-    statusMessage: String,
-    message: String,
-    ships: [
-        {
-            id: String,
-            name: String
-        },
-        ...
-    ]
+interface Response {
+    statusCode: number;
+    statusMessage: string;
+    message: string;
+    ships: {
+        id: string;
+        name: string;
+    }[];
 }
 
 ```
@@ -43,14 +40,14 @@ https://azurlane-api.appspot.com/v1/ships?orderBy=affiliation&affiliation=Sardeg
 
 **Code** : `500 Internal Server Error`
 
-**Content** :
+**Content return types** :
 
 ```ts
-{
-    statusCode: Number,
-    statusMessage: String,
-    message: String,
-    error: String
+interface ErrorResponse {
+    statusCode: number;
+    statusMessage: string;
+    message: string;
+    error: string;
 }
 ```
 
@@ -58,12 +55,12 @@ https://azurlane-api.appspot.com/v1/ships?orderBy=affiliation&affiliation=Sardeg
 
 **Code** : `400 Bad Request`
 
-**Content** :
+**Content return types** :
 
 ```ts
-{
-    statusCode: Number,
-    statusMessage: String,
-    message: String
+interface ErrorResponse {
+    statusCode: number;
+    statusMessage: string;
+    message: string;
 }
 ```
