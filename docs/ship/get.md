@@ -19,6 +19,30 @@ Used to get ship info.
 **Content return types**
 
 ```ts
+interface NamesData {
+    en: string | null;
+    cn: string | null;
+    jp: string | null;
+    kr: string | null;
+}
+
+interface SkinData {
+    title: string | null;
+    image: string | null;
+    chibi: string | null;
+}
+
+interface StatData {
+    name: string | null;
+    image: string | null;
+    value: string | null;
+}
+
+interface MiscellaneousData {
+    link: string | null;
+    name: string | null;
+}
+
 interface Response {
     statusCode: number;
     statusMessage: string;
@@ -26,18 +50,9 @@ interface Response {
     ship: {
         wikiUrl: string;
         id: string | null;
-        names: {
-            en: string | null;
-            cn: string | null;
-            jp: string | null;
-            kr: string | null;
-        },
+        names: NamesData;
         thumbnail: string;
-        skins: {
-            title: string | null;
-            image: string | null;
-            chibi: string | null;
-        }[];
+        skins: Array<SkinData>;
         buildTime: string | null;
         rarity: string;
         stars: {
@@ -49,53 +64,18 @@ interface Response {
         nationalityShort: string | null;
         hullType: string | null;
         stats: {
-            100: {
-                name: string | null;
-                image: string | null;
-                value: string | null;
-            }[] | null;
-            120: {
-                name: string | null;
-                image: string | null;
-                value: string | null;
-            }[] | null;
-            base: {
-                name: string | null;
-                image: string | null;
-                value: string | null;
-            }[] | null;
-            retrofit100: {
-                name: string | null;
-                image: string | null;
-                value: string | null;
-            }[] | null;
-            retrofit120: {
-                name: string | null;
-                image: string | null;
-                value: string | null;
-            }[] | null;
+            100: Array<StatData> | null;
+            120: Array<StatData> | null;
+            base: Array<StatData> | null;
+            retrofit100: Array<StatData> | null;
+            retrofit120: Array<StatData> | null;
         },
         miscellaneous: {
-            artist: {
-                link: string | null;
-                name: string | null;
-            } | null;
-            web: {
-                link: string | null;
-                name: string | null;
-            } | null;
-            pixiv: {
-                link: string | null;
-                name: string | null;
-            } | null;
-            twitter: {
-                link: string | null;
-                name: string | null;
-            } | null;
-            voiceActress: {
-                link: string | null;
-                name: string | null;
-            } | null;
+            artist: MiscellaneousData | null;
+            web: MiscellaneousData | null;
+            pixiv: MiscellaneousData | null;
+            twitter: MiscellaneousData | null;
+            voiceActress: MiscellaneousData | null;
         };
     };
 }

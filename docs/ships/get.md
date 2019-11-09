@@ -22,14 +22,16 @@ Used to get ships from a specific rarity, type or affiliation.
 
 [https://azurlane-api.appspot.com/v1/ships?orderBy=affiliation&affiliation=Sardegna%20Empire](https://azurlane-api.appspot.com/v1/ships?orderBy=affiliation&affiliation=Sardegna%20Empire)
 ```ts
+interface Ship {
+    id: string;
+    name: string;
+}
+
 interface Response {
     statusCode: number;
     statusMessage: string;
     message: string;
-    ships: {
-        id: string;
-        name: string;
-    }[];
+    ships: Array<Ship>;
 }
 
 ```

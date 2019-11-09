@@ -17,15 +17,17 @@ Used to get construction info.
 **Content return types**
 
 ```ts
+interface Construction {
+    time: string;
+    wikiUrl: string;
+    ships: string[];
+}
+
 interface Response {
     statusCode: number;
     statusMessage: string;
     message: string;
-    construction: {
-        time: string;
-        wikiUrl: string;
-        ships: string[];
-    };
+    construction: Construction;
 }
 ```
 
