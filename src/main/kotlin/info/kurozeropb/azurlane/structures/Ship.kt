@@ -1,4 +1,4 @@
-package info.kurozeropb.azurlaneapi.structures
+package info.kurozeropb.azurlane.structures
 
 data class Names(
     val en: String? = null,
@@ -61,3 +61,10 @@ data class Ship(
     val stats: Stats? = null, // Change back to not null
     val miscellaneous: Miscellaneous? = null // Change back to not null
 )
+
+data class ShipResponse(
+    override val statusCode: Int,
+    override val statusMessage: String,
+    override val message: String,
+    val ship: Ship
+) : BaseResponse

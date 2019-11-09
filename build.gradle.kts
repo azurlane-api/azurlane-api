@@ -1,20 +1,36 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
-plugins {
-    application
-    kotlin("jvm") version "1.3.50"
-}
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 group = "info.kurozeropb"
 version = "2.0.0"
 
-repositories {
-    mavenCentral()
-    jcenter()
+plugins {
+    java
+    application
+    kotlin("jvm") version "1.3.50"
+    id("com.github.johnrengelman.shadow") version "5.1.0"
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+
+    dependencies {
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.50")
+    }
 }
 
 application {
-    mainClassName = "info.kurozeropb.azurlaneapi"
+    mainClassName = "${group}.azurlane.API"
+}
+
+defaultTasks("run")
+
+repositories {
+    mavenCentral()
+    jcenter()
 }
 
 dependencies {
@@ -26,11 +42,13 @@ dependencies {
     implementation("it.skrape:skrapeit-core:1.0.0-alpha1")
 }
 
-tasks {
-    compileKotlin {
-        kotlinOptions.jvmTarget = "1.8"
-    }
-    compileTestKotlin {
-        kotlinOptions.jvmTarget = "1.8"
-    }
+tasks.withType<KotlinCompile> {
+    kotlinOptions.jvmTarget = "1.8"
+}
+
+tasks.withType<ShadowJar> {
+    baseName = "jeanne"
+    classifier = ""
+    version = version
+    destinationDir = file("build/libs")
 }
