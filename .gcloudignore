@@ -1,8 +1,0 @@
-# Exclude compiled .js files
-*.js
-build/
-
-# Exclude dependencies
-node_modules/
-
-docs/
