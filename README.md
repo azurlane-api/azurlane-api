@@ -2,7 +2,7 @@
 Unofficial json api that returns azur lane data
 
 # Docs
-[kurozeropb.github.io/al-api](https://kurozeropb.github.io/al-api/)
+[kurozeropb.github.io/al-api](https://kurozeropb.github.io/azurlane-api/)
 
 # Wrappers
 | Lang | Package                                                 | Git                                                        |
