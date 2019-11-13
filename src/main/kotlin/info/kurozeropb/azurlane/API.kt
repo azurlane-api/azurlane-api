@@ -1,5 +1,6 @@
 package info.kurozeropb.azurlane
 
+import info.kurozeropb.azurlane.controllers.ConstructionController
 import info.kurozeropb.azurlane.controllers.ShipController
 import io.javalin.apibuilder.ApiBuilder.*
 import io.javalin.Javalin
@@ -24,6 +25,8 @@ object API {
                 get {}
 
                 get("/ship", ShipController::getShip)
+
+                get("/build", ConstructionController::getBuildInfo)
             }
         }
     }
