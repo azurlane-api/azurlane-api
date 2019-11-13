@@ -38,11 +38,11 @@ data class MiscellaneousData(
 )
 
 data class Miscellaneous(
-    val artist: MiscellaneousData? = null,
-    val web: MiscellaneousData? = null,
-    val pixiv: MiscellaneousData? = null,
-    val twitter: MiscellaneousData? = null,
-    val voiceActress: MiscellaneousData? = null
+    var artist: MiscellaneousData? = null,
+    var web: MiscellaneousData? = null,
+    var pixiv: MiscellaneousData? = null,
+    var twitter: MiscellaneousData? = null,
+    var voiceActress: MiscellaneousData? = null
 )
 
 data class Ship(
