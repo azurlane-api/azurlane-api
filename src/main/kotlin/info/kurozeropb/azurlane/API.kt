@@ -1,7 +1,6 @@
 package info.kurozeropb.azurlane
 
 import info.kurozeropb.azurlane.controllers.ConstructionController
-import info.kurozeropb.azurlane.controllers.DeprecatedController
 import info.kurozeropb.azurlane.controllers.ShipController
 import info.kurozeropb.azurlane.controllers.ShipsController
 import io.javalin.apibuilder.ApiBuilder.*
@@ -35,13 +34,24 @@ object API {
             }
 
             path("v1") {
-                get(DeprecatedController::showDeprecationMessage)
+                get { ctx ->
+                    ctx.status(200).json(object {
+                        val statusCode = 200
+                        val statusMessage = "OK"
+                        val message = "Request was successful"
+                        val routes = listOf(
+                            "/ship [deprecated]",
+                            "/ships [deprecated]",
+                            "/build [deprecated]"
+                        )
+                    })
+                }
 
-                get("/ship", DeprecatedController::showDeprecationMessage)
+                get("/ship", ShipController::getShip)
 
-                get("/build", DeprecatedController::showDeprecationMessage)
+                get("/build", ConstructionController::getBuildInfo)
 
-                get("/ships", DeprecatedController::showDeprecationMessage)
+                get("/ships", ShipsController::getShips)
             }
 
             path("/v2") {
