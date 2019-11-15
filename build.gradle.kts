@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
-group = "info.kurozeropb"
+group = "info.kurozeropb.azurlane"
 version = "2.0.0"
 
 plugins {
@@ -23,7 +23,7 @@ buildscript {
 }
 
 application {
-    mainClassName = "${group}.azurlane.API"
+    mainClassName = "${group}.API"
 }
 
 defaultTasks("run")
@@ -47,7 +47,7 @@ tasks.withType<KotlinCompile> {
 }
 
 tasks.withType<ShadowJar> {
-    baseName = "jeanne"
+    baseName = "azurlane-api"
     classifier = ""
     version = version
     destinationDir = file("build/libs")
