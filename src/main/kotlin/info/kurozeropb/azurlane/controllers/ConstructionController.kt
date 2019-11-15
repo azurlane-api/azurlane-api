@@ -61,7 +61,7 @@ object ConstructionController {
 
                     val ships = mutableListOf<String>()
                     children.forEach { el ->
-                        ships.add(el.child(0).child(2).text())
+                        ships.add(if (el.child(0).children().count() >= 3) el.child(0).child(2).text() else el.child(0).child(1).text())
                     }
 
                     Construction(
