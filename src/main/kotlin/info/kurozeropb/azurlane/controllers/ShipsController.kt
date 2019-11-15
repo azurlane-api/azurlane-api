@@ -9,7 +9,7 @@ import it.skrape.extract
 import it.skrape.selects.htmlDocument
 import it.skrape.skrape
 
-enum class Order(val string: String) {
+enum class Category(val string: String) {
     RARITY("rarity"),
     TYPE("type"),
     AFFILIATION("affiliation")
@@ -18,8 +18,8 @@ enum class Order(val string: String) {
 object ShipsController {
 
     fun getShips(ctx: Context) {
-        val orderBy = ctx.queryParam("orderBy")
-        if (orderBy.isNullOrBlank()) {
+        val category = ctx.queryParam("category")
+        if (category.isNullOrBlank()) {
             ctx.status(400).json(ErrorResponse(
                 statusCode = 400,
                 statusMessage = "Bad Request",
@@ -29,10 +29,10 @@ object ShipsController {
         }
 
         val data = try {
-            when (orderBy) {
-                Order.RARITY.string -> getShipsByRarity(ctx)
-                Order.TYPE.string -> getShipsByType(ctx)
-                Order.AFFILIATION.string -> getShipsByAffiliation(ctx)
+            when (category) {
+                Category.RARITY.string -> getShipsByRarity(ctx)
+                Category.TYPE.string -> getShipsByType(ctx)
+                Category.AFFILIATION.string -> getShipsByAffiliation(ctx)
                 else -> {
                     ctx.status(400).json(ErrorResponse(
                         statusCode = 400,
