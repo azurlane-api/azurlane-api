@@ -2,9 +2,9 @@
 
 Base api url `https://azurlane-api.herokuapp.com/v2`
 
-## Open Endpoints
+## Endpoints
 
-Open endpoints require no Authentication.
+All endpoints require an authentication token. To get a valid token, donate to [patreon.com/Kurozero](https://patreon.com/Kurozero).
 
 * [Ship](ship/get.md) : `GET /ship`
 * [Ships](ships/get.md) : `GET /ships`
