@@ -10,7 +10,7 @@ Used to get ship info.
 
 **Method** : `GET`
 
-**Auth required** : NO
+**Auth required** : YES
 
 ## Success Response
 
@@ -109,6 +109,21 @@ interface ErrorResponse {
 **Condition** : Bad request param.
 
 **Code** : `400 Bad Request`
+
+**Content return types** :
+
+```kotlin
+interface ErrorResponse {
+    val statusCode: Int
+    val statusMessage: String
+    val message: String
+    val error: String?
+}
+```
+
+**Condition**: Invalid authorization token.
+
+**Code**: `401 Unauthorized`
 
 **Content return types** :
 
