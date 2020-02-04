@@ -9,6 +9,11 @@ Used to get construction info.
 **Method** : `GET`
 
 **Auth required** : YES
+```json
+{
+    "Authorization": "Bearer <token>"
+}
+```
 
 ## Success Response
 
@@ -16,18 +21,16 @@ Used to get construction info.
 
 **Content return types**
 
-```kotlin
-interface Construction {
-    val time: String
-    val wikiUrl: String
-    val ships: List<String>
-}
-
-interface Response {
-    val statusCode: Int
-    val statusMessage: String
-    val message: String
-    val construction: Construction
+```js
+{
+    statusCode: Number,
+    statusMessage: String,
+    message: String,
+    construction: {
+        time: String,
+        wikiUrl: String,
+        ships: Array<String>
+    }
 }
 ```
 
@@ -39,12 +42,12 @@ interface Response {
 
 **Content return types** :
 
-```kotlin
-interface ErrorResponse {
-    val statusCode: Int
-    val statusMessage: String
-    val message: String
-    val error: String?
+```js
+{
+    statusCode: Number,
+    statusMessage: String,
+    message: String,
+    error?: String
 }
 ```
 
@@ -54,12 +57,12 @@ interface ErrorResponse {
 
 **Content return types** :
 
-```kotlin
-interface ErrorResponse {
-    val statusCode: Int
-    val statusMessage: String
-    val message: String
-    val error: String?
+```js
+{
+    statusCode: Number,
+    statusMessage: String,
+    message: String,
+    error?: String
 }
 ```
 
@@ -69,11 +72,11 @@ interface ErrorResponse {
 
 **Content return types** :
 
-```kotlin
-interface ErrorResponse {
-    val statusCode: Int
-    val statusMessage: String
-    val message: String
-    val error: String?
+```js
+{
+    statusCode: Number,
+    statusMessage: String,
+    message: String,
+    error?: String
 }
 ```

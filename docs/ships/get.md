@@ -13,6 +13,11 @@ Used to get ships from a specific rarity, type or affiliation.
 **Method** : `GET`
 
 **Auth required** : YES
+```json
+{
+    "Authorization": "Bearer <token>"
+}
+```
 
 ## Success Response
 
@@ -20,18 +25,18 @@ Used to get ships from a specific rarity, type or affiliation.
 
 **Content return types**
 
-[https://azurlane-api.herokuapp.com/v2/ships?category=affiliation&affiliation=Sardegna%20Empire](https://azurlane-api.herokuapp.com/v2/ships?category=affiliation&affiliation=Sardegna%20Empire)
-```kotlin
-interface Ship {
-    val id: String
-    val name: String
-}
-
-interface Response {
-    val statusCode: Int
-    val statusMessage: String
-    val message: String
-    val ships: List<Ship>
+[https://kurozeropb.info/azurlane/v2/ships?category=affiliation&affiliation=Sardegna%20Empire](https://kurozeropb.info/azurlane/v2/ships?category=affiliation&affiliation=Sardegna%20Empire)
+```js
+{
+    statusCode: Number,
+    statusMessage: String,
+    message: String,
+    ships: [
+        {
+            id: String,
+            name: String
+        }
+    ]
 }
 
 ```
@@ -44,12 +49,12 @@ interface Response {
 
 **Content return types** :
 
-```kotlin
-interface ErrorResponse {
-    val statusCode: Int
-    val statusMessage: String
-    val message: String
-    val error: String?
+```js
+{
+    statusCode: Number,
+    statusMessage: String,
+    message: String,
+    error?: String
 }
 ```
 
@@ -59,12 +64,12 @@ interface ErrorResponse {
 
 **Content return types** :
 
-```kotlin
-interface ErrorResponse {
-    val statusCode: Int
-    val statusMessage: String
-    val message: String
-    val error: String?
+```js
+{
+    statusCode: Number,
+    statusMessage: String,
+    message: String,
+    error?: String
 }
 ```
 
@@ -74,11 +79,11 @@ interface ErrorResponse {
 
 **Content return types** :
 
-```kotlin
-interface ErrorResponse {
-    val statusCode: Int
-    val statusMessage: String
-    val message: String
-    val error: String?
+```js
+{
+    statusCode: Number,
+    statusMessage: String,
+    message: String,
+    error?: String
 }
 ```

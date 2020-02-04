@@ -11,6 +11,11 @@ Used to get ship info.
 **Method** : `GET`
 
 **Auth required** : YES
+```json
+{
+    "Authorization": "Bearer <token>"
+}
+```
 
 ## Success Response
 
@@ -18,74 +23,98 @@ Used to get ship info.
 
 **Content return types**
 
-```kotlin
-interface Names {
-    val en: String?
-    val cn: String?
-    val jp: String?
-    val kr: String?
-}
-
-interface Skin {
-    val title: String?
-    val image: String?
-    val chibi: String?
-}
-
-interface Stars {
-    val value: String? // example: ★★★☆☆☆
-    val count: Int
-}
-
-interface Stat {
-    val name: String?
-    val image: String?
-    val value: String?
-}
-
-interface Stats {
-    val level100: List<Stat>?
-    val level120: List<Stat>?
-    val base: List<Stat>?
-    val retrofit100: List<Stat>?
-    val retrofit120: List<Stat>?
-}
-
-interface MiscellaneousData {
-    val link: String?
-    val name: String?
-}
-
-interface Miscellaneous {
-    val artist: MiscellaneousData?
-    val web: MiscellaneousData?
-    val pixiv: MiscellaneousData?
-    val twitter: MiscellaneousData?
-    val voiceActress: MiscellaneousData?
-}
-
-interface Ship {
-    val wikiUrl: String
-    val id: String?
-    val names: Names
-    val thumbnail: String
-    val skins: List<Skin>
-    val buildTime: String?
-    val rarity: String
-    val stars: Stars
-    val `class`: String?
-    val nationality: String?
-    val nationalityShort: String?
-    val hullType: String?
-    val stats: Stats,
-    val miscellaneous: Miscellaneous
-}
-
-interface Response {
-    val statusCode: Int
-    val statusMessage: String
-    val message: String
-    val ship: Ship
+```js
+{
+    statusCode: Number,
+    statusMessage: String,
+    message: String,
+    ship: {
+        wikiUrl: String,
+        id?: String,
+        names: {
+            en?: String,
+            cn: String,
+            jp: String,
+            kr: String
+        },
+        thumbnail: String,
+        skins: [
+            {
+                title?: String,
+                image?: String,
+                chibi?: String
+            }
+        ]
+        buildTime?: String,
+        rarity: String,
+        stars: {
+            value?: String, // example: ★★★☆☆☆
+            count: Number
+        },
+        class?: String,
+        nationality?: String,
+        nationalityShort?: String,
+        hullType?: String,
+        stats: {
+            level100?: [
+                {
+                    name?: String,
+                    image?: String,
+                    value?: String
+                }
+            ],
+            level120?: [
+                {
+                    name?: String,
+                    image?: String,
+                    value?: String
+                }
+            ],
+            base?: [
+                {
+                    name?: String,
+                    image?: String,
+                    value?: String
+                }
+            ],
+            retrofit100?: [
+                {
+                    name?: String,
+                    image?: String,
+                    value?: String
+                }
+            ],
+            retrofit120?: [
+                {
+                    name?: String,
+                    image?: String,
+                    value?: String
+                }
+            ]
+        },
+        miscellaneous: {
+            artist?: {
+                link?: String,
+                name?: String
+            },
+            web?: {
+                link?: String,
+                name?: String
+            },
+            pixiv?: {
+                link?: String,
+                name?: String
+            },
+            twitter?: {
+                link?: String,
+                name?: String
+            },
+            voiceActress?: {
+                link?: String,
+                name?: String
+            }
+        }
+    }
 }
 ```
 
@@ -97,12 +126,12 @@ interface Response {
 
 **Content return types** :
 
-```kotlin
-interface ErrorResponse {
-    val statusCode: Int
-    val statusMessage: String
-    val message: String
-    val error: String?
+```js
+{
+    statusCode: Number,
+    statusMessage: String,
+    message: String,
+    error?: String
 }
 ```
 
@@ -112,12 +141,12 @@ interface ErrorResponse {
 
 **Content return types** :
 
-```kotlin
-interface ErrorResponse {
-    val statusCode: Int
-    val statusMessage: String
-    val message: String
-    val error: String?
+```js
+{
+    statusCode: Number,
+    statusMessage: String,
+    message: String,
+    error?: String
 }
 ```
 
@@ -127,11 +156,11 @@ interface ErrorResponse {
 
 **Content return types** :
 
-```kotlin
-interface ErrorResponse {
-    val statusCode: Int
-    val statusMessage: String
-    val message: String
-    val error: String?
+```js
+{
+    statusCode: Number,
+    statusMessage: String,
+    message: String,
+    error?: String
 }
 ```

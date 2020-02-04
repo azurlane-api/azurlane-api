@@ -1,6 +1,6 @@
 # Azur Lane API
 
-Base api url `https://azurlane-api.herokuapp.com/v2`
+Base api url `https://kurozeropb.info/azurlane/v2`
 
 ## Endpoints
 
